@@ -1,0 +1,3 @@
+<%= gettext "koob|feed" %>
+
+<%= render @view_module, @view_template, assigns %>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <style>
+      div#header {
+        font-size: 18px;
+        font-weight: bold;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 8px;
+      }
+      div.content {
+        margin-top: 32px;
+      }
+      div.link {
+        display: inline-block;
+        margin: 24px 12px 32px;
+      }
+      div.link a {
+        padding: 12px 24px;
+        border-radius: 50px;
+        color: white;
+        background-color: #29f;
+        cursor: pointer;
+        text-decoration: none;
+      }
+      div.link a:hover {
+        background-color: #18e;
+      }
+      div.bare-link {
+        display: inline;
+        color: #222;
+        word-wrap: break-word;
+      }
+      div.bare-link:hover {
+        background-color: #eee;
+      }
+      div.small { font-size: 12px; color: #666; }
+      div.small { font-size: 12px; color: #666; }
+      div.footer {
+        border-top: 1px solid #eee;
+        padding-top: 12px;
+        margin-top: 18px;
+        color: #666;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id='header'>
+      <%= gettext "koob|feed" %>
+    </div>
+    <div id='content'>
+      <%= render @view_module, @view_template, assigns %>
+    </div>
+  </body>
+</html>

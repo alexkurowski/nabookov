@@ -1,0 +1,39 @@
+#signin {
+  form {
+    padding: 15px 5px;
+  }
+}
+
+
+.modal-content {
+  border-radius: 4px;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.modal-title {
+  margin-bottom: 16px;
+  text-align: center !important;
+}
+
+.modal label {
+  font-weight: normal;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.modal-footer {
+  padding: 0;
+  text-align: center !important;
+
+  .link {
+    padding: 15px;
+
+    &:hover {
+      background: #fafafa;
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+  }
+}
+

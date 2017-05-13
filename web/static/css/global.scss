@@ -1,0 +1,29 @@
+@import "variables";
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: $body-background;
+  min-height: 100vh;
+}
+
+
+.text-centered {
+  text-align: center;
+}
+
+.text-small {
+  font-size: 12px;
+}
+
+.link {
+  color: $link;
+  text-decoration: none !important;
+
+  &:hover {
+    color: $link-hover;
+    cursor: pointer;
+  }
+}

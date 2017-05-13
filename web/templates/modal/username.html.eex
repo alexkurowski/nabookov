@@ -1,0 +1,24 @@
+<div id='username' class='modal'>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-body'>
+        <h4 class='modal-title'>
+          <%= gettext "Change your pen name" %>
+        </h4>
+        <label>
+          <%= gettext "Pen name" %>
+        </label>
+        <label id='username-taken' class='pull-right text-danger'>
+          <%= gettext "(This name is already taken)" %>
+        </label>
+        <%= text_input :user, :name, value: username(current_user(@conn)), class: 'form-control', placeholder: gettext("John Smith"), autofocus: true %>
+      </div>
+
+      <div class='modal-footer'>
+        <div id='username-submit' class='link'>
+          <%= gettext "Apply" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

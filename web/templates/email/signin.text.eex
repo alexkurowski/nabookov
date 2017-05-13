@@ -1,0 +1,7 @@
+<% url = page_url(App.Endpoint, :index, email: @email, token: @token) %>
+
+Copy this link: <%= url %>
+
+Now paste it into your browser's address bar.
+
+If you did not make this request, contact us at pussyfart@pizda.com

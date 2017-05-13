@@ -1,0 +1,9 @@
+<footer>
+  <div id='footer'>
+    <div class='text-centered text-small text-muted'>
+      <%= gettext "koob|feed" %>
+      ©
+      <%= DateTime.utc_now.year %>
+    </div>
+  </div>
+</footer>

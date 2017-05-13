@@ -1,0 +1,18 @@
+<div id='signin_ok' class='modal'>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-body text-centered'>
+        <h4 class='modal-title'>
+          <%= gettext "koob|feed" %>
+        </h4>
+        <%= gettext "We sent you a link to sign in. Check your email inbox." %>
+      </div>
+
+      <div class='modal-footer'>
+        <div class='link' data-dismiss='modal'>
+          <%= gettext "Dismiss" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
