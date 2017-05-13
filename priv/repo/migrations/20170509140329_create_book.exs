@@ -6,8 +6,10 @@ defmodule App.Repo.Migrations.CreateBook do
       add :title, :string
       add :description, :string
       add :slug, :string
+      add :author, :string
       add :price, :integer
       add :user_id, references(:users, on_delete: :nothing)
+      add :deleted, :boolean, default: false, null: false
 
       timestamps()
     end

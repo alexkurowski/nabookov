@@ -39,5 +39,5 @@ erl_crash.dump
 
 
 # Vim files
-/*.swp
-/*.swo
+*.swp
+*.swo

@@ -3,7 +3,7 @@
     <div class='modal-content'>
       <div class='modal-body'>
         <h4 class='modal-title'>
-          <%= gettext "Change your pen name" %>
+          <%= gettext "Set your pen name" %>
         </h4>
         <label>
           <%= gettext "Pen name" %>

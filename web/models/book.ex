@@ -3,8 +3,14 @@ defmodule App.Book do
 
   schema "novels" do
     field :title, :string
+    field :description, :string
+    field :slug, :string
+    field :author, :string
     field :price, :integer
+    field :deleted, :boolean, default: false
     belongs_to :user, App.User
+    has_many :chapters, App.Chapter
+    has_many :feedback, App.Feedback
 
     timestamps()
   end
