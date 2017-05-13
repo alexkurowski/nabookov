@@ -1,10 +1,11 @@
-<%= unless is_signed_in?(@conn) do %>
+<%= unless signed_in?(@conn) do %>
   <%= render App.ModalView, "signin.html" %>
   <%= render App.ModalView, "signin_ok.html" %>
 
 <% else %>
   <%= render App.ModalView, "username.html", conn: @conn %>
-  <%= if no_username(current_user(@conn)) do %>
+  <%= if @view_module == App.PageView and
+         no_username(current_user(@conn)) do %>
     <script>
       window.init_modal = '#username';
     </script>
@@ -14,28 +15,36 @@
 <header>
   <div id='header'>
     <div class='float-left'>
-      <%= link to: page_path @conn, :index do %>
+      <%= link to: page_path(@conn, :index), id: "koobfeed-logo", class: "link" do %>
         <div class='logo-left'>book</div>
         <div class='logo-right'>feed</div>
       <% end %>
     </div>
 
     <div class='float-right'>
-      <%= if is_signed_in?(@conn) do %>
+      <%= if signed_in?(@conn) do %>
+        <%= unless @view_module == App.WriterView do %>
+          <%= link to: writer_path(@conn, :dashboard), id: "writer-mode", class: "link" do %>
+            <%= gettext "Write" %>
+          <% end %>
+        <% end %>
+
+        <div class='header-separator'></div>
+
         <div id='header-user' class='link'>
           <span class='name'>
             <%= username_or_email current_user(@conn) %>
           </span>
 
           <div class='dropdown invisible'>
-            <div class='dropdown-item'>
+            <div class='dropdown-item text-right'>
               <span class='link'
                     data-toggle='modal'
                     data-target='#username'>
-                <%= gettext "Change Username" %>
+                <%= gettext "Pen name" %>
               </span>
             </div>
-            <div class='dropdown-item'>
+            <div class='dropdown-item text-right'>
               <span id='signout' class='link'>
                 <%= gettext "Sign out" %>
               </span>

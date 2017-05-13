@@ -13,6 +13,10 @@ defmodule App.Router do
     plug :accepts, ["json"]
   end
 
+  if Mix.env == :dev do
+    forward "/emails", Bamboo.EmailPreviewPlug
+  end
+
   scope "/", App do
     pipe_through :browser # Use the default browser stack
 
@@ -21,10 +25,9 @@ defmodule App.Router do
     post "/signin", UserController, :signin
     post "/signout", UserController, :signout
     post "/username", UserController, :username
-  end
 
-  if Mix.env == :dev do
-    forward "/emails", Bamboo.EmailPreviewPlug
+    get "/write", WriterController, :dashboard
+    get "/:slug", ReaderController, :find
   end
 
   # Other scopes may use custom stacks.

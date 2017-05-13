@@ -34,29 +34,8 @@ footer {
   .float-left,
   .float-right {
     height: 100%;
-
-    > a,
-    > span,
-    > #header-user {
-      display: inline-block;
-      height: 100%;
-      vertical-align: middle;
-
-      &:before {
-        content: '';
-        display: inline-block;
-        width: 0;
-        height: 100%;
-        vertical-align: middle;
-      }
-    }
-
-    > a {
-      padding-top: 4px;
-      font-size: 20px;
-      text-decoration: none;
-    }
   }
+
 
   .logo-left,
   .logo-right {
@@ -79,7 +58,71 @@ footer {
       }
     }
   }
+
+
+  #koobfeed-logo {
+    padding-top: 4px;
+    font-size: 20px;
+    text-decoration: none;
+  }
+
+  #koobfeed-logo,
+  #writer-mode,
+  #header-user {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+
+    &:before {
+      content: '';
+      display: inline-block;
+      width: 0;
+      height: 100%;
+      vertical-align: middle;
+    }
+  }
+
+  #writer-mode,
+  #header-user {
+    padding-top: 2px;
+  }
+
+  #header-user {
+    position: relative;
+
+    .dropdown {
+      position: absolute;
+      top: 50px;
+      right: -16px;
+      width: 200px;
+      background: $background;
+      padding: 15px;
+      border: 1px solid $hr;
+      border-top: none;
+
+      .dropdown-item {
+        padding: 4px 0;
+
+        span {
+          display: block;
+        }
+
+        &:hover {
+          background: white;
+
+          > span { color: #067 }
+        }
+      }
+    }
+  }
+
+  .header-separator {
+    display: inline-block;
+    width: 32px;
+  }
 }
+
+
 
 #content {
   padding: 0 16px;
@@ -87,35 +130,4 @@ footer {
 
 #footer {
   padding-top: 8px;
-}
-
-
-#header-user {
-  position: relative;
-  padding-top: 2px;
-
-  .dropdown {
-    position: absolute;
-    top: 50px;
-    right: -16px;
-    width: 200px;
-    background: $background;
-    padding: 15px;
-    border: 1px solid $hr;
-    border-top: none;
-
-    .dropdown-item {
-      padding: 4px 0;
-
-      span {
-        display: block;
-      }
-
-      &:hover {
-        background: white;
-
-        > span { color: #067 }
-      }
-    }
-  }
 }

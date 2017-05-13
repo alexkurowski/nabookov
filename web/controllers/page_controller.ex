@@ -1,7 +1,7 @@
 defmodule App.PageController do
   use App.Web, :controller
 
-  import ControllerHelper, only: :functions
+  import App.ControllerHelper, only: :functions
 
   @doc """
   Try to sign in by a email/token pair if present

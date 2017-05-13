@@ -13,7 +13,7 @@
   </head>
 
   <body>
-    <%= render "header.html", conn: @conn %>
+    <%= render "header.html", conn: @conn, view_module: @view_module %>
 
     <div id='content-wrapper'>
       <div id='content'>
