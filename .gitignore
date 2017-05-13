@@ -36,3 +36,8 @@ erl_crash.dump
 /rel
 
 # End of https://www.gitignore.io/api/elixir,phoenix
+
+
+# Vim files
+/*.swp
+/*.swo

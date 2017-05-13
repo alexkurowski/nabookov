@@ -4,6 +4,11 @@ A platform/market place for writers to sell their work as it is being written.
 "Patreon" or "Early Access" for writers.
 
 
+## Repository notes
+
+* Root folder name is supposed to be `app`, but koobfeed might work just fine.
+
+
 ### Ideas
 
 Keep track of users and try to determine if they are a writer or a reader
