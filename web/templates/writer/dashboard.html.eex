@@ -4,7 +4,7 @@
   <span class='link-btn'
         data-toggle='modal'
         data-target='#new_book'>
-    <%= fa_icon "plus" %>
+    +
     <%= gettext "New Book" %>
   </span>
 </div>

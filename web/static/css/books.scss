@@ -11,7 +11,7 @@
     padding: 12px 16px;
     padding-left: 24px;
     margin: 16px auto;
-    cursor: default;
+    cursor: pointer;
     overflow: hidden;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.075);
 
@@ -51,6 +51,18 @@
       right: 16px;
       height: 32px;
       background: linear-gradient(to bottom, rgba(255, 255, 255, 0), white);
+    }
+
+    &:hover {
+      border-color: $hr-hover;
+
+      &:before {
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 16px;
+        background: $main-text;
+      }
     }
   }
 }
