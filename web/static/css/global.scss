@@ -21,9 +21,26 @@ body {
 .link {
   color: $link;
   text-decoration: none !important;
+  cursor: pointer;
 
   &:hover {
     color: $link-hover;
-    cursor: pointer;
   }
+}
+
+.link-btn {
+  color: white;
+  background: $link;
+  padding: 8px;
+  border-radius: 4px;
+  text-decoration: none !important;
+  cursor: pointer;
+
+  &:hover {
+    background: $link-hover;
+  }
+}
+
+.clearfix {
+  clear: both;
 }

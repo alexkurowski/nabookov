@@ -1,0 +1,19 @@
+<div class='bookshelf container-fluid'>
+  <div class='row'>
+    <%= for book <- @books do %>
+      <div class='col-sm-3'>
+        <div class='book'>
+          <div class='inserted'>
+            <%= Timex.format(book.inserted_at, "%d/%m/%Y", :strftime) |> elem(1) %>
+          </div>
+          <div class='title'>
+            <%= book.title %>
+          </div>
+          <div class='description'>
+            <%= book.description %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

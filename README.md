@@ -1,4 +1,4 @@
-# KOOB|FEED
+# NABOOKOV
 
 A platform/market place for writers to sell their work as it is being written.
 "Patreon" or "Early Access" for writers.
@@ -6,7 +6,7 @@ A platform/market place for writers to sell their work as it is being written.
 
 ## Repository notes
 
-* Root folder name is supposed to be `app`, but koobfeed might work just fine.
+* Root folder name is supposed to be `app`, but nabookov might work just fine.
 
 
 ### Ideas
@@ -38,8 +38,25 @@ Allow users to override typeface settings on :cog: settings page.
 
 ### Naming
 
+> nabookov
+
 Similar to "gitbook"
 "patreon" + "book"
+"constancy", "cohesion", "persistence", "flow"
+"Fiction"
+"Quill", "pen", "scribble"
+"Draft"
+drauthor
+ink
+
+naBOOKov
+
+DRAFT
+DRUFT
+TFARD
+drafer
+
+drftr
 
 Available:
 spcover.com -> Self-publishing + Cover

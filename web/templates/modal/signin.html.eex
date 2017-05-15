@@ -5,10 +5,9 @@
         <h4 class='modal-title'>
           <%= gettext "Sign in to Your Account" %>
         </h4>
-        <label>
-          <%= gettext "Email Address" %>
-        </label>
-        <%= text_input :user, :email, class: "form-control", placeholder: gettext("yourname@example.com"), autofocus: true %>
+
+        <label><%= gettext "Email Address" %></label>
+        <%= text_input :user, :email, class: "form-control", placeholder: "yourname@example.com", autofocus: true %>
       </div>
 
       <div class='modal-footer'>

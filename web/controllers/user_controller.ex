@@ -1,8 +1,6 @@
 defmodule App.UserController do
   use App.Web, :controller
 
-  import App.ControllerHelper, only: :functions
-
   def signin(conn, params) do
     App.User.send_signin_email(params["email"])
     text conn, "ok"

@@ -5,6 +5,7 @@
         <h4 class='modal-title'>
           <%= gettext "koob|feed" %>
         </h4>
+
         <%= gettext "We sent you a link to sign in. Check your email inbox." %>
       </div>
 

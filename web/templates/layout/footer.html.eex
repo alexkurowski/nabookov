@@ -1,7 +1,7 @@
 <footer>
   <div id='footer'>
     <div class='text-centered text-small text-muted'>
-      <%= gettext "koob|feed" %>
+      <%= gettext "nabookov.com" %>
       ©
       <%= DateTime.utc_now.year %>
     </div>

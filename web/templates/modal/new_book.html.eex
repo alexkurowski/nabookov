@@ -1,0 +1,25 @@
+<div id='new_book' class='modal'>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-body'>
+        <h4 class='modal-title'>
+          <%= gettext "Create a new Book" %>
+        </h4>
+
+        <label><%= gettext "Title" %></label>
+        <%= text_input :book, :title, class: "form-control", placeholder: "Book title", autofocus: true %>
+
+        <br>
+
+        <label><%= gettext "Description" %></label>
+        <%= textarea :book, :description, class: "form-control", placeholder: "Short headline about your book" %>
+      </div>
+
+      <div class='modal-footer'>
+        <div id='new-book-submit' class='link'>
+          <%= gettext "Create Book" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

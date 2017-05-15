@@ -1,6 +1,6 @@
 <% url = page_url(App.Endpoint, :index, email: @email, token: @token) %>
 <div class='content'>
-  Click the button below to sign in to your koob|feed Account
+  Click the button below to sign in to your Nabookov Account
 </div>
 
 <div class='link'>
@@ -15,5 +15,5 @@
 </div>
 
 <div class='footer'>
-  If you did not make this request, contact us at pussyfart@pizda.com
+  If you did not make this request, you can ignore this email
 </div>

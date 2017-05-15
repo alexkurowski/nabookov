@@ -3,41 +3,61 @@ Modals =
     csrf = ->
       $('meta[name="csrf-token"]').attr('content')
 
+    # TODO: disable submit buttons so there are no multiple requests
+
     $('#signin-submit').on 'click', ->
       email = $('#user_email').val().trim()
       valid = /.+@.+\..+/
-      if valid.test email
-        $.ajax
-          url: '/signin'
-          method: 'post'
-          data: {
-            _csrf_token: csrf(),
-            email: email
-          }
-        .done ->
-          $('#signin').modal('hide')
-          $('#signin_ok').modal()
+      return unless valid.test email
+      $.ajax
+        url: '/signin'
+        method: 'post'
+        data: {
+          _csrf_token: csrf(),
+          email: email
+        }
+      .done ->
+        $('#signin').modal('hide')
+        $('#signin_ok').modal()
 
     $('#username-submit').on 'click', ->
-      name  = $('#user_name').val().trim()
-      if name.length isnt 0
-        $.ajax
-          url: '/username'
-          method: 'post'
-          data: {
-            _csrf_token: csrf(),
-            name: name
-          }
-        .done ->
-          $('#username').modal('hide')
-          $('#header-user > .name').text("@#{name}")
-        .fail ->
-          $('#username-taken').fadeIn()
-          setTimeout(->
-            $('#username-taken').fadeOut()
-          , 3000)
+      name = $('#user_name').val().trim()
+      return if name.length is 0
+      $.ajax
+        url: '/username'
+        method: 'post'
+        data: {
+          _csrf_token: csrf(),
+          name: name
+        }
+      .done ->
+        $('#username').modal('hide')
+        $('#header-user > .name').text("@#{name}")
+      .fail ->
+        $('#username-taken').fadeIn()
+        setTimeout(->
+          $('#username-taken').fadeOut()
+        , 3000)
 
-    # TODO: disable submit buttons so there are no multiple requests
+    $('#new-book-submit').on 'click', ->
+      title = $('#book_title').val().trim()
+      description = $('#book_description').val().trim()
+      if title.length is 0
+        $('#book_title').addClass('has-danger').focus()
+        return
+      if description.length is 0
+        $('#book_description').addClass('has-danger').focus()
+        return
+      $.ajax
+        url: '/write/new'
+        method: 'post'
+        data: {
+          _csrf_token: csrf(),
+          title: title,
+          description: description
+        }
+      .done -> location.reload()
+
 
     $('#username-taken').hide()
 

@@ -37,36 +37,23 @@ footer {
   }
 
 
-  .logo-left,
-  .logo-right {
-    display: inline-block;
+  .logo-thin {
+    font-weight: 100;
   }
 
-  .logo-left {
-    transition: transform 0.2s cubic-bezier(0.65, 0.05, 0.36, 1);
-    transform: scaleX(-1);
-  }
-
-  .logo-right {
-    margin-left: -4px;
-  }
-
-  .float-left {
-    &:hover {
-      .logo-left {
-        transform: scaleX(1);
-      }
-    }
+  .logo-thick {
+    font-weight: 800;
   }
 
 
-  #koobfeed-logo {
+  #header-logo {
     padding-top: 4px;
     font-size: 20px;
     text-decoration: none;
   }
 
-  #koobfeed-logo,
+  #header-logo,
+  #header-signin,
   #writer-mode,
   #header-user {
     display: inline-block;
@@ -82,6 +69,7 @@ footer {
     }
   }
 
+  #header-signin,
   #writer-mode,
   #header-user {
     padding-top: 2px;

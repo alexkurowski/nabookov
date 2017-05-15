@@ -5,9 +5,8 @@
         <h4 class='modal-title'>
           <%= gettext "Set your pen name" %>
         </h4>
-        <label>
-          <%= gettext "Pen name" %>
-        </label>
+
+        <label><%= gettext "Pen name" %></label>
         <label id='username-taken' class='pull-right text-danger'>
           <%= gettext "(This name is already taken)" %>
         </label>

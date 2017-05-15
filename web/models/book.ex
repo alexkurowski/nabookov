@@ -1,7 +1,7 @@
 defmodule App.Book do
   use App.Web, :model
 
-  schema "novels" do
+  schema "books" do
     field :title, :string
     field :description, :string
     field :slug, :string
@@ -22,5 +22,10 @@ defmodule App.Book do
     struct
     |> cast(params, [:title, :price])
     |> validate_required([:title, :price])
+  end
+
+  def create(user, title, description) do
+    %App.Book{user_id: user.id, title: title, description: description}
+    |> App.Repo.insert
   end
 end

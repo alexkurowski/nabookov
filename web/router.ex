@@ -22,12 +22,14 @@ defmodule App.Router do
 
     get "/", PageController, :index
 
-    post "/signin", UserController, :signin
-    post "/signout", UserController, :signout
+    post "/signin",   UserController, :signin
+    post "/signout",  UserController, :signout
     post "/username", UserController, :username
 
-    get "/write", WriterController, :dashboard
-    get "/:slug", ReaderController, :find
+    get "/write",     WriterController, :dashboard
+    post "/write/new", WriterController, :new_book
+
+    get "/:slug",     ReaderController, :find
   end
 
   # Other scopes may use custom stacks.

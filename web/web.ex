@@ -36,6 +36,8 @@ defmodule App.Web do
 
       import App.Router.Helpers
       import App.Gettext
+
+      import App.ControllerHelper, only: :functions
     end
   end
 
@@ -48,6 +50,8 @@ defmodule App.Web do
 
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
+
+      import FontAwesomePhoenix.HTML
 
       import App.Router.Helpers
       import App.ErrorHelpers
