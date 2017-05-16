@@ -37,7 +37,10 @@ defmodule App.Web do
       import App.Web.Router.Helpers
       import App.Web.Gettext
 
+      import App.Web.AuthHelper, only: :functions
       import App.Web.ControllerHelper, only: :functions
+
+      plug :set_current_user
     end
   end
 
@@ -58,6 +61,7 @@ defmodule App.Web do
       import App.Web.ErrorHelpers
       import App.Web.Gettext
 
+      import App.Web.AuthHelper, only: :functions
       import App.Web.ViewHelper, only: :functions
     end
   end

@@ -5,7 +5,7 @@
 <% else %>
   <%= render App.Web.ModalView, "username.html", conn: @conn %>
   <%= if @view_module == App.Web.PageView and
-         no_username(current_user(@conn)) do %>
+         no_username?(current_user(@conn)) do %>
     <script>
       window.init_modal = '#username';
     </script>

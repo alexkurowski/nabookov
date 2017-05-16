@@ -5,7 +5,6 @@ defmodule App.Web.PageController do
   Try to sign in by a email/token pair if present
   """
   def index(conn, params) do
-    IO.puts "got something"
     if present(params["email"]) or present(params["token"]) do
       conn = maybe_signin(conn, params)
       redirect conn, to: "/"
@@ -14,10 +13,8 @@ defmodule App.Web.PageController do
     end
   end
 
-  defp maybe_signin(conn, params) do
-    token = App.Web.User.maybe_signin(params)
-    unless is_nil(token),
-      do: put_session(conn, :current_user, token),
-      else: conn
+  defp maybe_signin(conn, %{"email" => email, "token" => token}) do
+    conn
+    |> put_session(:current_user_token, App.Auth.maybe_signin(email, token))
   end
 end

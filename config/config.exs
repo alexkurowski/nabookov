@@ -31,7 +31,7 @@ config :phoenix, :template_engines,
   haml: PhoenixHaml.Engine
 
 # Mailer configurations
-config :app, App.Web.Mailer,
+config :app, App.Mailer,
   adapter: Bamboo.LocalAdapter
   # server: "smtp.domain",
   # port: 1025,

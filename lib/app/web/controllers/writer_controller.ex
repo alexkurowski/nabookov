@@ -5,14 +5,15 @@ defmodule App.Web.WriterController do
   Writer's dashboard where he can manage his books and prices
   """
   def dashboard(conn, _params) do
-    books = Repo.all from b in App.Web.Book,
+    # books = App.Books.user_books
+    books = Repo.all from b in App.Books.Book,
                        join: u in assoc(b, :user),
                        where: b.user_id == u.id
     render conn, "dashboard.html", books: books
   end
 
   def new_book(conn, params) do
-    App.Web.Book.create(current_user(conn), params["title"], params["description"])
+    App.Books.create_book(current_user(conn), params["title"], params["description"])
     text conn, "ok"
   end
 end

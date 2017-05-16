@@ -1,19 +1,18 @@
-defmodule App.Web.Feedback do
-  use App.Web, :model
+defmodule App.Books.Feedback do
+  use Ecto.Schema
+  import Ecto.Changeset
 
   schema "feedback" do
     field :status, FeedbackStatus
     field :comment, :string
-    belongs_to :user, App.Web.User
-    belongs_to :book, App.Web.Book
-    belongs_to :chapter, App.Web.Chapter
+    belongs_to :user, App.Auth.User
+    belongs_to :book, App.Books.Book
+    belongs_to :chapter, App.Books.Chapter
 
     timestamps()
   end
 
-  @doc """
-  Builds a changeset based on the `struct` and `params`.
-  """
+  @doc false
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:status, :comment])

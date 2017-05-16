@@ -1,13 +1,8 @@
 defmodule App.Web.ControllerHelper do
+  @doc """
+  Check if a string value `val` is not blank
+  """
   def present(val) do
     not is_nil(val) and String.trim(val) != ""
-  end
-
-  def signed_in?(conn) do
-    not is_nil current_user(conn)
-  end
-
-  def current_user(conn) do
-    App.Repo.get_by(App.Web.User, signin_token: (Plug.Conn.get_session(conn, :current_user)))
   end
 end
