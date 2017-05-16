@@ -1,0 +1,63 @@
+<%= unless signed_in?(@conn) do %>
+  <%= render App.Web.ModalView, "signin.html" %>
+  <%= render App.Web.ModalView, "signin_ok.html" %>
+
+<% else %>
+  <%= render App.Web.ModalView, "username.html", conn: @conn %>
+  <%= if @view_module == App.Web.PageView and
+         no_username(current_user(@conn)) do %>
+    <script>
+      window.init_modal = '#username';
+    </script>
+  <% end %>
+<% end %>
+
+<header>
+  <div id='header'>
+    <div class='float-left'>
+      <%= link to: page_path(@conn, :index), id: "header-logo", class: "link" do %>
+        <span class='logo-thin'>na</span><span class='logo-thick'>book</span><span class='logo-thin'>ov</span>
+      <% end %>
+    </div>
+
+    <div class='float-right'>
+      <%= if signed_in?(@conn) do %>
+        <%= unless @view_module == App.Web.WriterView do %>
+          <%= link to: writer_path(@conn, :dashboard), id: "writer-mode", class: "link" do %>
+            <%= gettext "Write" %>
+          <% end %>
+        <% end %>
+
+        <div class='header-separator'></div>
+
+        <div id='header-user' class='link'>
+          <span class='name'>
+            <%= username_or_email current_user(@conn) %>
+          </span>
+
+          <div class='dropdown invisible'>
+            <div class='dropdown-item text-right'>
+              <span class='link'
+                    data-toggle='modal'
+                    data-target='#username'>
+                <%= gettext "Pen name" %>
+              </span>
+            </div>
+            <div class='dropdown-item text-right'>
+              <span id='signout' class='link'>
+                <%= gettext "Sign out" %>
+              </span>
+            </div>
+          </div>
+        </div>
+
+      <% else %>
+        <span id='header-signin' class='link'
+              data-toggle='modal'
+              data-target='#signin'>
+          <%= gettext "Sign up | Sign in" %>
+        </span>
+      <% end %>
+    </div>
+  </div>
+</header>

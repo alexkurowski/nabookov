@@ -10,10 +10,10 @@ config :app,
   ecto_repos: [App.Repo]
 
 # Configures the endpoint
-config :app, App.Endpoint,
+config :app, App.Web.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "d+3w2526kb/X9D/XlAN0SBjqwJt0b72C0FomFDTDwAzQWJO/aOOTEvYamqrymKae",
-  render_errors: [view: App.ErrorView, accepts: ~w(html json)],
+  render_errors: [view: App.Web.ErrorView, accepts: ~w(html json)],
   pubsub: [name: App.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
@@ -31,7 +31,7 @@ config :phoenix, :template_engines,
   haml: PhoenixHaml.Engine
 
 # Mailer configurations
-config :app, App.Mailer,
+config :app, App.Web.Mailer,
   adapter: Bamboo.LocalAdapter
   # server: "smtp.domain",
   # port: 1025,

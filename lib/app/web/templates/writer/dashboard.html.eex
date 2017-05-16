@@ -1,0 +1,16 @@
+<%= render App.Web.ModalView, "new_book.html" %>
+
+<div class='float-right'>
+  <span class='link-btn'
+        data-toggle='modal'
+        data-target='#new_book'>
+    +
+    <%= gettext "New Book" %>
+  </span>
+</div>
+
+<div class='clearfix'></div>
+
+<br>
+
+<%= render App.Web.SharedView, "bookshelf.html", assigns %>

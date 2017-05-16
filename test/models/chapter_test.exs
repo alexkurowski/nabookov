@@ -1,7 +1,7 @@
-defmodule App.ChapterTest do
-  use App.ModelCase
+defmodule App.Web.ChapterTest do
+  use App.Web.ModelCase
 
-  alias App.Chapter
+  alias App.Web.Chapter
 
   @valid_attrs %{locked: true, text: "some content", visible: true}
   @invalid_attrs %{}

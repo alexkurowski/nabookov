@@ -1,0 +1,7 @@
+<% url = page_url(App.Web.Endpoint, :index, email: @email, token: @token) %>
+
+Copy this link: <%= url %>
+
+Now paste it into your browser's address bar to sign in to your Nabookov Account.
+
+If you did not make this request, you can ignore this email

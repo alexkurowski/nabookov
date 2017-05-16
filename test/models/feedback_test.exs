@@ -1,7 +1,7 @@
-defmodule App.FeedbackTest do
-  use App.ModelCase
+defmodule App.Web.FeedbackTest do
+  use App.Web.ModelCase
 
-  alias App.Feedback
+  alias App.Web.Feedback
 
   @valid_attrs %{comment: "some content", status: 42}
   @invalid_attrs %{}
