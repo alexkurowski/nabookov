@@ -4,8 +4,8 @@ defmodule App.Books.Chapter do
 
   schema "chapters" do
     field :text, :string
-    field :visible, :boolean, default: false
-    field :locked, :boolean, default: false
+    field :visible, :boolean, default: false, null: false
+    field :locked, :boolean, default: false, null: false
     belongs_to :book, App.Books.Book
     has_many :feedback, App.Books.Feedback
 
@@ -16,6 +16,6 @@ defmodule App.Books.Chapter do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:text, :visible, :locked])
-    |> validate_required([:text, :visible, :locked])
+    |> validate_required([])
   end
 end

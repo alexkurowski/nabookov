@@ -14,6 +14,7 @@
     cursor: pointer;
     overflow: hidden;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.075);
+    transition: border-color 0.4s;
 
     &:before {
       content: '';
@@ -28,7 +29,7 @@
       top: 0;
       left: 0;
       bottom: 0;
-      width: 18px;
+      width: 22px;
       background: $book-cover;
     }
 

@@ -18,4 +18,19 @@ defmodule App.Books do
     %Book{user_id: user.id, title: title, description: description}
     |> Repo.insert
   end
+
+  @doc """
+  Get books created by currently logged in user
+  """
+  def current_user_books(conn) do
+    user_books conn.assigns[:current_user].id
+  end
+
+  @doc """
+  Get books created by user
+  """
+  def user_books(id) do
+    Repo.all from b in Book,
+               where: b.user_id == ^id
+  end
 end

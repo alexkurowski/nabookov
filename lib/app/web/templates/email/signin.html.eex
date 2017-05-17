@@ -5,7 +5,7 @@
 
 <div class='link'>
   <%= link to: url do %>
-    Sign in to koob|feed
+    Sign in to nabookov.com
   <% end %>
 </div>
 

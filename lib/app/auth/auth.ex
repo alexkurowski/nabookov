@@ -34,8 +34,7 @@ defmodule App.Auth do
   def maybe_signin(_, nil), do: nil
   def maybe_signin(email, token) do
     user = fetch_by_email(email)
-    valid = user.signup_token == token
-    if valid do
+    if user.signup_token == token do
       user
       |> remove_token(:signup_token)
       |> create_token(:signin_token)

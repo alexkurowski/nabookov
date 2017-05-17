@@ -25,7 +25,19 @@ defmodule App.Web.AuthHelper do
     if is_nil token do
       conn
     else
-      conn = assign(conn, :current_user, App.Auth.find_by_token(token))
+      assign(conn, :current_user, App.Auth.find_by_token(token))
+    end
+  end
+
+  @doc """
+  Redirect to root path non-signed in users
+  """
+  def require_sign_in(conn, _) do
+    if is_nil conn.assigns[:current_user] do
+      Phoenix.Controller.redirect(conn, to: "/")
+      Plug.Conn.halt
+    else
+      conn
     end
   end
 end

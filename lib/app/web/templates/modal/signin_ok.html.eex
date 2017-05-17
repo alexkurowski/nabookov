@@ -3,7 +3,7 @@
     <div class='modal-content'>
       <div class='modal-body text-centered'>
         <h4 class='modal-title'>
-          <%= gettext "koob|feed" %>
+          <%= gettext "nabookov" %>
         </h4>
 
         <%= gettext "We sent you a link to sign in. Check your email inbox." %>

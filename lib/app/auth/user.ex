@@ -7,8 +7,8 @@ defmodule App.Auth.User do
     field :name, :string
     field :signup_token, :string
     field :signin_token, :string
-    has_many :books, App.Web.Book
-    has_many :feedback, App.Web.Feedback
+    has_many :books, App.Books.Book
+    has_many :feedback, App.Books.Feedback
 
     timestamps()
   end

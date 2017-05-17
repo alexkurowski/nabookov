@@ -16,6 +16,6 @@ defmodule App.Books.Feedback do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:status, :comment])
-    |> validate_required([:status, :comment])
+    |> validate_required([])
   end
 end

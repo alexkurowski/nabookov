@@ -1,14 +1,13 @@
 defmodule App.Web.WriterController do
   use App.Web, :controller
 
+  plug :require_sign_in
+
   @doc """
   Writer's dashboard where he can manage his books and prices
   """
   def dashboard(conn, _params) do
-    # books = App.Books.user_books
-    books = Repo.all from b in App.Books.Book,
-                       join: u in assoc(b, :user),
-                       where: b.user_id == u.id
+    books = App.Books.current_user_books(conn)
     render conn, "dashboard.html", books: books
   end
 
