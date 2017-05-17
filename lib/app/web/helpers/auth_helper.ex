@@ -35,7 +35,7 @@ defmodule App.Web.AuthHelper do
   def require_sign_in(conn, _) do
     if is_nil conn.assigns[:current_user] do
       Phoenix.Controller.redirect(conn, to: "/")
-      Plug.Conn.halt
+      Plug.Conn.halt(conn)
     else
       conn
     end

@@ -1,20 +1,14 @@
-<div id='signin' class='modal'>
-  <div class='modal-dialog'>
-    <div class='modal-content'>
-      <div class='modal-body'>
-        <h4 class='modal-title'>
-          <%= gettext "Sign in to Your Account" %>
-        </h4>
+<%= modal "signin" do %>
+  <div class='modal-body'>
+    <%= modal_title gettext "Sign in to Your Account" %>
 
-        <label><%= gettext "Email Address" %></label>
-        <%= text_input :user, :email, class: "form-control", placeholder: "yourname@example.com", autofocus: true %>
-      </div>
+    <label><%= gettext "Email Address" %></label>
+    <%= text_input :user, :email, class: "form-control", placeholder: "yourname@example.com", autofocus: true %>
+  </div>
 
-      <div class='modal-footer'>
-        <div id='signin-submit' class='link'>
-          <%= gettext "Send me a link to sign in" %>
-        </div>
-      </div>
+  <div class='modal-footer'>
+    <div id='signin-submit' class='link'>
+      <%= gettext "Send me a link to sign in" %>
     </div>
   </div>
-</div>
+<% end %>

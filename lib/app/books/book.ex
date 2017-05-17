@@ -20,7 +20,7 @@ defmodule App.Books.Book do
   @doc false
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title, :price])
+    |> cast(params, [:title, :description, :slug, :author, :price, :visible, :deleted])
     |> validate_required([])
     |> unique_constraint(:slug)
   end
