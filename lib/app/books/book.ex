@@ -8,6 +8,7 @@ defmodule App.Books.Book do
     field :slug, :string
     field :author, :string
     field :price, :integer
+    field :visible, :boolean, default: false
     field :deleted, :boolean, default: false
     belongs_to :user, App.Auth.User
     has_many :chapters, App.Books.Chapter

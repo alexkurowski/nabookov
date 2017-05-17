@@ -1,4 +1,5 @@
 <%= render App.Web.ModalView, "new_book.html" %>
+<%= render App.Web.ModalView, "edit_book.html" %>
 
 <div class='float-left'>
   <%= gettext "My Books" %>
@@ -17,4 +18,7 @@
 
 <br>
 
-<%= render App.Web.SharedView, "bookshelf.html", assigns %>
+<%= render App.Web.SharedView, "bookshelf.html",
+             user: @current_user,
+             books: @books,
+             edit: true %>

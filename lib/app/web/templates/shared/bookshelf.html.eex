@@ -1,14 +1,28 @@
-<div class='bookshelf container-fluid'>
+<div class='bookshelf container-fluid'
+     data-author='<%= %>'>
   <div class='row'>
     <%= for book <- @books do %>
       <div class='col-md-3 col-sm-4'>
-        <div class='book'>
+        <div class='book'
+             data-book='<%= book.id %>'
+             data-author='<%= book.author %>'
+             data-visible='<%= book.visible %>'>
+          <%= if @edit do %>
+            <div class='edit-details'
+                 data-toggle='modal'
+                 data-target='#edit_book'>
+              <%= fa_icon "cog" %>
+            </div>
+          <% end %>
+
           <div class='inserted'>
             <%= Timex.format(book.inserted_at, "%d/%m/%Y", :strftime) |> elem(1) %>
           </div>
+
           <div class='title'>
             <%= book.title %>
           </div>
+
           <div class='description'>
             <%= book.description %>
           </div>

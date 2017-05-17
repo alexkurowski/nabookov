@@ -1,0 +1,43 @@
+<div id='edit_book' class='modal'>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-body'>
+        <h4 class='modal-title'>
+          <%= gettext "Book Details" %>
+        </h4>
+
+        <label><%= gettext "Title" %></label>
+        <%= text_input :book, :title, class: "form-control", placeholder: "Book title", autofocus: true %>
+
+        <br>
+
+        <label><%= gettext "Description" %></label>
+        <%= textarea :book, :description, class: "form-control", placeholder: "Short headline about your book" %>
+
+        <br>
+
+        <label><%= gettext "Authorship" %></label>
+        <%= text_input :book, :author, class: "form-control", placeholder: "John Hancock" %>
+
+        <br>
+
+        <div class='form-check'>
+          <label class='form-check-label'>
+            <%= checkbox :book, :visible, class: "form-check-input" %>
+            <%= gettext "Published" %>
+          </label>
+        </div>
+
+        <br>
+
+        # TODO: link to delete this book (with a confirmation modal)
+      </div>
+
+      <div class='modal-footer'>
+        <div id='edit-book-submit' class='link'>
+          <%= gettext "Apply" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

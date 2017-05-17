@@ -15,4 +15,9 @@ defmodule App.Web.WriterController do
     App.Books.create_book(current_user(conn), params["title"], params["description"])
     text conn, "ok"
   end
+
+  def edit_book_details(conn, params) do
+    App.Books.update_book(current_user(conn), params)
+    text conn, "ok"
+  end
 end
