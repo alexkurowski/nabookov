@@ -1,13 +1,13 @@
 <%= modal "signin_ok" do %>
-  <div class='modal-body text-centered'>
-    <%= modal_title gettext "nabookov" %>
+  <%= body "text-centered" do %>
+    <%= title gettext "nabookov" %>
 
     <%= gettext "We sent you a link to sign in. Check your email inbox." %>
-  </div>
+  <% end %>
 
-  <div class='modal-footer'>
+  <%= footer do %>
     <div class='link' data-dismiss='modal'>
       <%= gettext "Dismiss" %>
     </div>
-  </div>
+  <% end %>
 <% end %>

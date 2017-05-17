@@ -1,6 +1,6 @@
 <%= modal "new_book" do %>
-  <div class='modal-body'>
-    <%= modal_title gettext "Create a new Book" %>
+  <%= body do %>
+    <%= title gettext "Create a new Book" %>
 
     <label><%= gettext "Title" %></label>
     <%= text_input :book, :title, class: "form-control", placeholder: "Book title", autofocus: true %>
@@ -9,11 +9,11 @@
 
     <label><%= gettext "Description" %></label>
     <%= textarea :book, :description, class: "form-control", placeholder: "Short headline about your book" %>
-  </div>
+  <% end %>
 
-  <div class='modal-footer'>
+  <%= footer do %>
     <div id='new-book-submit' class='link'>
       <%= gettext "Create Book" %>
     </div>
-  </div>
+  <% end %>
 <% end %>

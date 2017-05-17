@@ -1,6 +1,6 @@
 <%= modal "edit_book" do %>
-  <div class='modal-body'>
-    <%= modal_title gettext "Book Details" %>
+  <%= body do %>
+    <%= title gettext "Book Details" %>
 
     <label><%= gettext "Title" %></label>
     <%= text_input :book, :title, class: "form-control", placeholder: "Book title", autofocus: true %>
@@ -27,11 +27,11 @@
     <br>
 
     # TODO: link to delete this book (with a confirmation modal)
-  </div>
+  <% end %>
 
-  <div class='modal-footer'>
+  <%= footer do %>
     <div id='edit-book-submit' class='link'>
       <%= gettext "Apply" %>
     </div>
-  </div>
+  <% end %>
 <% end %>

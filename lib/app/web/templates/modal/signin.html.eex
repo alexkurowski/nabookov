@@ -1,14 +1,14 @@
 <%= modal "signin" do %>
-  <div class='modal-body'>
-    <%= modal_title gettext "Sign in to Your Account" %>
+  <%= body do %>
+    <%= title gettext "Sign in to Your Account" %>
 
     <label><%= gettext "Email Address" %></label>
     <%= text_input :user, :email, class: "form-control", placeholder: "yourname@example.com", autofocus: true %>
-  </div>
+  <% end %>
 
-  <div class='modal-footer'>
+  <%= footer do %>
     <div id='signin-submit' class='link'>
       <%= gettext "Send me a link to sign in" %>
     </div>
-  </div>
+  <% end %>
 <% end %>

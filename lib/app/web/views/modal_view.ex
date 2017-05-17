@@ -13,7 +13,37 @@ defmodule App.Web.ModalView do
     """
   end
 
-  def modal_title(content) do
+  def title(content) do
     raw "<h4 class='modal-title'>#{content}</h4>"
+  end
+
+  def header(do: content),
+    do: header "", do: content
+  def header(add_class, do: content) do
+    raw """
+    <div class='modal-header #{add_class}'>
+      #{content |> elem(1)}
+    </div>
+    """
+  end
+
+  def body(do: content),
+    do: body "", do: content
+  def body(add_class, do: content) do
+    raw """
+    <div class='modal-body #{add_class}'>
+      #{content |> elem(1)}
+    </div>
+    """
+  end
+
+  def footer(do: content),
+    do: footer "", do: content
+  def footer(add_class, do: content) do
+    raw """
+    <div class='modal-footer #{add_class}'>
+      #{content |> elem(1)}
+    </div>
+    """
   end
 end
