@@ -5,14 +5,15 @@ html, body {
 }
 
 body {
-  background: $body-background;
+  // background: $body-background;
+  background: $background;
   color: $main-text;
   min-height: 100vh;
 }
 
 header {
   background: $background;
-  border-bottom: 1px solid $hr;
+  // border-bottom: 1px solid $hr;
 }
 
 #content-wrapper {
@@ -25,7 +26,7 @@ header {
 footer {
   background: $background;
   height: 50px;
-  border-top: 1px solid $hr;
+  // border-top: 1px solid $hr;
 }
 
 #header,

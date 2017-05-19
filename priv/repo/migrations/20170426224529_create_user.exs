@@ -11,7 +11,6 @@ defmodule App.Repo.Migrations.CreateUser do
       timestamps()
     end
     create unique_index(:users, [:email])
-    create unique_index(:users, [:name])
     create unique_index(:users, [:signup_token])
     create unique_index(:users, [:signin_token])
 

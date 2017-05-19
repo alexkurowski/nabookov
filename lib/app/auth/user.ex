@@ -18,10 +18,14 @@ defmodule App.Auth.User do
     struct
     |> cast(params, [:email, :name, :signup_token, :signin_token])
     |> validate_required([])
+    |> downcase_email
     |> validate_format(:email, ~r/@/)
     |> unique_constraint(:email)
-    |> unique_constraint(:name)
     |> unique_constraint(:signup_token)
     |> unique_constraint(:signin_token)
+  end
+
+  defp downcase_email(changeset) do
+    update_change(changeset, :email, &String.downcase/1)
   end
 end

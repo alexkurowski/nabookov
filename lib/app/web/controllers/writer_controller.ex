@@ -12,12 +12,18 @@ defmodule App.Web.WriterController do
   end
 
   def new_book(conn, params) do
-    App.Books.create_book(current_user(conn), params["title"], params["description"])
+    App.Books.create_book(conn, params)
+    text conn, "ok"
+  end
+
+  def write_book(conn, params) do
+    book = App.Books.current_user_book(conn, params["slug"])
+    IO.inspect(book)
     text conn, "ok"
   end
 
   def edit_book_details(conn, params) do
-    App.Books.update_book(current_user(conn), params)
+    App.Books.update_book(conn, params)
     text conn, "ok"
   end
 end

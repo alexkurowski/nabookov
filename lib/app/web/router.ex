@@ -26,8 +26,9 @@ defmodule App.Web.Router do
     post "/signout",  UserController, :signout
     post "/username", UserController, :username
 
-    get "/write",     WriterController, :dashboard
-    post "/write/new", WriterController, :new_book
+    get "/write",       WriterController, :dashboard
+    get "/write/:slug", WriterController, :write_book
+    post "/write/new",  WriterController, :new_book
 
     get "/:slug",     ReaderController, :find
   end

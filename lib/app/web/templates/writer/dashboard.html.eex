@@ -2,12 +2,13 @@
 <%= render App.Web.ModalView, "edit_book.html" %>
 
 <div class='my-books-header text-centered'>
-  <%= gettext "My Books" %>
+  <h2><%= gettext "My Books" %></h2>
 </div>
 
 <br>
 
 <%= render App.Web.SharedView, "bookshelf.html",
+             conn: @conn,
              user: @current_user,
              books: @books,
              edit: true %>

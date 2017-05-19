@@ -20,6 +20,7 @@ defmodule App.Auth do
   Retrieve or create a user record with a given `email`.
   """
   def fetch_by_email(email) do
+    email = String.downcase(email)
     Repo.get_by(User, email: email) ||
     Repo.insert(%User{email: email})
     |> elem(1)
@@ -84,7 +85,7 @@ defmodule App.Auth do
     |> elem(1)
   end
 
-  defp generate_token(size) do
+  def generate_token(size) do
     :crypto.strong_rand_bytes(size)
     |> Base.url_encode64
     |> binary_part(0, size)

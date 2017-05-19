@@ -2,9 +2,10 @@
   <div class='row'>
     <%= for book <- @books do %>
       <div class='col-md-3 col-sm-4'>
-        <div class='book cover-<%= book.cover %>'
-             data-book='<%= book.id %>'
-             data-visible='<%= book.visible %>'>
+        <a href='<%= writer_path @conn, :write_book, book.slug %>'
+           class='book cover-<%= book.cover %>'
+           data-book='<%= book.slug %>'
+           data-visible='<%= book.visible %>'>
           <%= if @edit do %>
             <div class='edit-details'
                  data-toggle='modal'
@@ -16,7 +17,7 @@
           <div class='title'>
             <%= book.title %>
           </div>
-        </div>
+        </a>
       </div>
     <% end %>
 

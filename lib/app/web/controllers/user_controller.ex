@@ -7,7 +7,7 @@ defmodule App.Web.UserController do
   end
 
   def signout(conn, _params) do
-    conn = put_session(conn, :current_user, nil)
+    conn = put_session(conn, :current_user_token, nil)
     text conn, "ok"
   end
 

@@ -22,6 +22,11 @@ defmodule App.Books.Book do
     struct
     |> cast(params, [:title, :description, :cover, :slug, :price, :visible, :deleted])
     |> validate_required([])
+    |> downcase_slug
     |> unique_constraint(:slug)
+  end
+
+  defp downcase_slug(changeset) do
+    update_change(changeset, :slug, &String.downcase/1)
   end
 end
