@@ -1,4 +1,4 @@
-defmodule App.Books.Chapter do
+defmodule App.Data.Chapter do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -9,8 +9,8 @@ defmodule App.Books.Chapter do
     field :order, :integer
     field :visible, :boolean, default: false, null: false
     field :locked, :boolean, default: false, null: false
-    belongs_to :book, App.Books.Book
-    has_many :feedback, App.Books.Feedback
+    belongs_to :book, App.Data.Book
+    has_many :feedback, App.Data.Feedback
 
     timestamps()
   end

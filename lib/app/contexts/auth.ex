@@ -6,7 +6,7 @@ defmodule App.Auth do
   import Ecto.Query, warn: false
   alias App.Repo
 
-  alias App.Auth.User
+  alias App.Data.User
 
 
   @doc """

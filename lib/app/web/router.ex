@@ -27,7 +27,7 @@ defmodule App.Web.Router do
     post "/username", UserController, :username
 
     get "/write",       WriterController, :dashboard
-    get "/write/:slug", WriterController, :write_book
+    get "/write/:slug", WriterController, :write
     post "/write/new",  WriterController, :new_book
 
     get "/:slug",     ReaderController, :find

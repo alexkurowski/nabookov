@@ -2,8 +2,8 @@
   <div class='row'>
     <%= for book <- @books do %>
       <div class='col-md-3 col-sm-4'>
-        <a href='<%= writer_path @conn, :write_book, book.slug %>'
-           class='book cover-<%= book.cover %>'
+        <a href='<%= writer_path @conn, :write, book.slug %>'
+           class='<%= book_class(book) %>'
            data-book='<%= book.slug %>'
            data-visible='<%= book.visible %>'>
           <%= if @edit do %>

@@ -6,9 +6,9 @@ defmodule App.Books do
   import Ecto.Query, warn: false
   alias App.Repo
 
-  alias App.Books.Book
-  alias App.Books.Chapter
-  alias App.Books.Feedback
+  alias App.Data.Book
+  alias App.Data.Chapter
+  alias App.Data.Feedback
 
 
   @doc """
@@ -16,7 +16,10 @@ defmodule App.Books do
   """
   def create_book(conn, %{"title" => title, "description" => description}) do
     user_id = current_user_id(conn)
-    %Book{user_id: user_id, title: title, description: description, slug: App.Auth.generate_token(8)}
+    slug = App.Auth.generate_token(8) |> String.downcase
+    {:ok, book} = %Book{user_id: user_id, title: title, description: description, slug: slug}
+                  |> Repo.insert
+    %Chapter{book_id: book.id}
     |> Repo.insert
   end
 
@@ -44,7 +47,7 @@ defmodule App.Books do
   Get a book data with its chapters
   """
   def user_book(user_id, slug) do
-    Repo.get_by(Book, user_id: user_id, slug: slug)
+    book = user_book_by_slug(user_id, slug) |> Repo.preload(:chapters)
   end
 
   @doc """
@@ -52,7 +55,7 @@ defmodule App.Books do
   """
   def current_user_book(conn, slug) do
     user_id = current_user_id(conn)
-    Repo.get_by(Book, user_id: user_id, slug: slug)
+    book = user_book_by_slug(user_id, slug) |> Repo.preload(:chapters)
   end
 
   @doc """
@@ -60,10 +63,15 @@ defmodule App.Books do
   """
   def update_book(conn, %{"book" => slug, "title" => title, "description" => description}) do
     user_id = current_user_id(conn)
-    book = Repo.get_by(Book, user_id: user_id, slug: slug)
+    book = user_book_by_slug(user_id, slug)
   end
 
   defp current_user_id(conn) do
     conn.assigns[:current_user].id
+  end
+
+  defp user_book_by_slug(user_id, slug) do
+    Book
+    |> Repo.get_by(user_id: user_id, slug: String.downcase(slug))
   end
 end

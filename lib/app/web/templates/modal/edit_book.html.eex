@@ -3,17 +3,12 @@
     <%= title gettext "Book Details" %>
 
     <label><%= gettext "Title" %></label>
-    <%= text_input :book, :title, class: "form-control", placeholder: "Book title", autofocus: true %>
+    <%= text_input :book, :title, class: "form-control", placeholder: "Book title", maxlength: 120, autofocus: true %>
 
     <br>
 
     <label><%= gettext "Description" %></label>
-    <%= textarea :book, :description, class: "form-control", placeholder: "Short headline about your book" %>
-
-    <br>
-
-    <label><%= gettext "Authorship" %></label>
-    <%= text_input :book, :author, class: "form-control", placeholder: "John Hancock" %>
+    <%= textarea :book, :description, class: "form-control", placeholder: "Short headline about your book", maxlength: 255 %>
 
     <br>
 

@@ -22,10 +22,12 @@ import "phoenix_html"
 
 import Global from "js/global"
 import Modals from "js/modals"
+import Books  from "js/books"
 
 export var App = {
   initialize: function () {
     Global.initialize()
     Modals.initialize()
+    Books.initialize()
   }
 }

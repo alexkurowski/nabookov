@@ -1,4 +1,4 @@
-defmodule App.Auth.User do
+defmodule App.Data.User do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -7,8 +7,8 @@ defmodule App.Auth.User do
     field :name, :string
     field :signup_token, :string
     field :signin_token, :string
-    has_many :books, App.Books.Book
-    has_many :feedback, App.Books.Feedback
+    has_many :books, App.Data.Book
+    has_many :feedback, App.Data.Feedback
 
     timestamps()
   end

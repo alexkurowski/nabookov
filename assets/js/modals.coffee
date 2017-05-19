@@ -55,17 +55,17 @@ Modals =
         }
       .done -> location.reload()
 
-    $('.bookshelf .edit-details').on 'click', ->
+    $('.bookshelf .edit-details').on 'click', (e) ->
+      e.preventDefault()
+
       book        = $(@).closest('.book')
       book_id     = book.data('book')
       title       = book.find('.title').text().trim()
       description = book.find('.description').text().trim()
-      author      = book.data('author') or $('.bookshelf').data('author')
 
       modal = $('#edit_book')
       modal.find('#book_title').val(title)
       modal.find('#book_description').val(description)
-      modal.find('#book_author').val(author)
       modal.find('#edit-book-submit').data(book_id)
 
     $('#username-taken').hide()

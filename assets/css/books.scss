@@ -19,13 +19,18 @@
     &.cover-blue { background-color: $book-cover-blue;
                    color: $book-white-text; }
 
+    &.small-title {
+      font-size: 10px;
+    }
+
     .edit-details {
-      float: right;
+      position: absolute;
+      bottom: 0;
+      right: 16px;
       padding: 4px;
       margin-top: -4px;
       margin-right: -10px;
-      font-size: 12px;
-      color: $pale-text;
+      font-size: 16px !important;
       opacity: 0;
       transition: opacity 0.3s;
 
