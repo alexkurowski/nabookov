@@ -23,7 +23,9 @@ defmodule App.Books do
   Get books created by currently logged in user
   """
   def current_user_books(conn) do
-    user_books conn.assigns[:current_user].id
+    id = conn.assigns[:current_user].id
+    Repo.all from b in Book,
+               where: b.user_id == ^id
   end
 
   @doc """
@@ -31,6 +33,7 @@ defmodule App.Books do
   """
   def user_books(id) do
     Repo.all from b in Book,
-               where: b.user_id == ^id
+               where: b.user_id == ^id,
+               where: b.visible == true
   end
 end

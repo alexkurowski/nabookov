@@ -1,31 +1,26 @@
 @import "variables";
 
+.my-books-header {
+  font-size: 28px;
+}
+
 .bookshelf {
-  .book {
+  .book,
+  .new-book {
     position: relative;
-    width: 170px;
+    width: 150px;
     height: 220px;
-    background: $background;
-    border: 1px solid $book-border;
-    border-radius: 5px;
-    padding: 10px 16px;
-    padding-left: 30px;
+    background: white;
+    border-radius: 3px;
+    padding: 32px 16px;
     margin: 16px auto;
     cursor: pointer;
     overflow: hidden;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.075);
-    transition: border-color 0.4s;
+    transition: all 0.4s;
 
-    &:before {
-      content: '';
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      width: 22px;
-      background: $book-cover;
-    }
+    &.cover-blue { background-color: $book-cover-blue;
+                   color: $book-white-text; }
 
     .edit-details {
       float: right;
@@ -42,44 +37,52 @@
       }
     }
 
-    .inserted {
-      color: $sub-text;
-      font-size: 12px;
-    }
-
     .title {
-      color: $main-text;
-      margin: 6px 0;
       font-weight: bold;
-    }
-
-    .description {
-      color: $sub-text;
-      font-size: 14px;
-    }
-
-    &:after {
-      content: '';
-      display: block;
-      position: absolute;
-      bottom: 0px;
-      left: 24px;
-      right: 16px;
-      height: 32px;
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 255));
+      word-wrap: break-word;
     }
 
     &:hover {
-      border-color: $book-border-hover;
-      box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
-
-      &:before {
-        background: $book-cover-hover;
-      }
+      box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.6);
 
       .edit-details {
         opacity: 1;
       }
     }
+  }
+
+  .new-book {
+    background: none !important;
+    border: 3px dashed $pale-text;
+    color: $sub-text !important;
+    padding: 82px 0;
+
+    &:hover {
+      color: $main-text !important;
+      border-color: $sub-text;
+      box-shadow: none !important;
+    }
+  }
+}
+
+.book-list {
+  .book {
+    background: $background;
+    padding: 12px;
+    margin: 16px 32px;
+    border: 1px solid $hr;
+    border-radius: 4px;
+  }
+
+  .cover {
+    width: 120px;
+    height: 160px;
+    background: blue;
+    border: 1px solid $book-border;
+    border-radius: 5px;
+  }
+
+  .title {
+    font-weight: bold;
   }
 }

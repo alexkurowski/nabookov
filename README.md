@@ -3,6 +3,11 @@
 A platform/market place for writers to sell their work as it is being written.
 "Patreon" or "Early Access" for writers.
 
+Nabookov is better than anything on the market, because it aims to improve on
+reading and writing experience, and keep clutter away. Improved design and
+ability to buy books directly from authors is what sets nabookov.com apart
+from the similar platforms.
+
 
 ## Repository notes
 
@@ -36,9 +41,16 @@ Allow users to override typeface settings on :cog: settings page.
 * Suggestions (user specific by tags)
 
 
+### Writing app
+
+https://typen.co/
+
+
 ### Naming
 
 > nabookov
+> nBOOKv
+> nbkv
 
 Similar to "gitbook"
 "patreon" + "book"

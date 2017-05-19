@@ -1,16 +1,27 @@
 $hr: #eee;
 
-$body-background: #fafafa;
+$body-background: #fafbfd;
 $background: white;
 
 $link: #08a;
 $link-hover: #067;
 
-$main-text: #333;
-$sub-text: #666;
-$pale-text: #999;
+$black-text: #333;
+$main-text: #404852;
+$sub-text: #666d75;
+$pale-text: #a0a3a8;
 
+
+$book-white-text: white;
+$book-black-text: $main-text;
+
+$book-cover-blue: #49f;
+
+$book-spine: #444;
+$book-spine-hover: #333;
 $book-border: #eee;
 $book-border-hover: #0ad;
-$book-cover: #444;
-$book-cover-hover: #333;
+
+$book-border-hover: black;
+
+$new-book-border: #a0a3a8;

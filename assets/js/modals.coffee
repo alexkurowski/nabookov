@@ -45,9 +45,6 @@ Modals =
       if title.length is 0
         $('#book_title').addClass('has-danger').focus()
         return
-      if description.length is 0
-        $('#book_description').addClass('has-danger').focus()
-        return
       $.ajax
         url: '/write/new'
         method: 'post'

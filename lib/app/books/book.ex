@@ -5,8 +5,8 @@ defmodule App.Books.Book do
   schema "books" do
     field :title, :string
     field :description, :string
+    field :cover, :string
     field :slug, :string
-    field :author, :string
     field :price, :integer
     field :visible, :boolean, default: false
     field :deleted, :boolean, default: false
@@ -20,7 +20,7 @@ defmodule App.Books.Book do
   @doc false
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title, :description, :slug, :author, :price, :visible, :deleted])
+    |> cast(params, [:title, :description, :cover, :slug, :price, :visible, :deleted])
     |> validate_required([])
     |> unique_constraint(:slug)
   end

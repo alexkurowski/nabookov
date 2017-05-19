@@ -70,7 +70,7 @@ defmodule App.Auth do
 
   defp create_token(nil, _), do: %User{}
   defp create_token(user, token) do
-    size = if token == :signup_token do 32 else 64 end
+    size = if token == :signup_token do 16 else 64 end
     user
     |> User.changeset(%{token => generate_token(size)})
     |> Repo.update

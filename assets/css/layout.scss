@@ -1,5 +1,15 @@
 @import "variables";
 
+html, body {
+  height: 100%;
+}
+
+body {
+  background: $body-background;
+  color: $main-text;
+  min-height: 100vh;
+}
+
 header {
   background: $background;
   border-bottom: 1px solid $hr;
@@ -7,14 +17,13 @@ header {
 
 #content-wrapper {
   min-height: 100%;
-  padding: 72px 0;
-  margin-top: -51px;
+  padding: 88px 0;
+  margin-top: -61px;
   margin-bottom: -51px;
 }
 
 footer {
   background: $background;
-  padding: 8px 16px;
   height: 50px;
   border-top: 1px solid $hr;
 }
@@ -28,7 +37,7 @@ footer {
 }
 
 #header {
-  height: 50px;
+  height: 60px;
   padding: 0 16px;
 
   .float-left,
@@ -82,9 +91,8 @@ footer {
       position: absolute;
       top: 50px;
       right: -16px;
-      width: 200px;
       background: $background;
-      padding: 15px;
+      padding: 10px 20px;
       border: 1px solid $hr;
       border-top: none;
 
@@ -110,12 +118,10 @@ footer {
   }
 }
 
-
-
 #content {
   padding: 0 16px;
 }
 
 #footer {
-  padding-top: 8px;
+  padding: 16px;
 }

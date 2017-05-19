@@ -7,7 +7,7 @@
 
     <br>
 
-    <label><%= gettext "Description" %></label>
+    <label><%= gettext "Description" %> <span class='optional'><%= gettext "(optional)" %></span></label>
     <%= textarea :book, :description, class: "form-control", placeholder: "Short headline about your book" %>
   <% end %>
 

@@ -1,0 +1,19 @@
+<div class='book-list container'>
+  <%= for book <- @books do %>
+    <div class='book row'>
+      <div class='col-4'>
+        <div class='cover'></div>
+      </div>
+
+      <div class='details col-8'>
+        <div class='title'>
+          <%= book.title %>
+        </div>
+
+        <div class='description'>
+          <%= book.description %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
