@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="<%= get_csrf_token() %>">
 
-    <title><%= gettext "nabookov" %></title>
+    <title><%= t "nabookov" %></title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 

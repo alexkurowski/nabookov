@@ -48,7 +48,7 @@
 
   <body>
     <div id='header'>
-      <%= gettext "Nabookov" %>
+      <%= t "Nabookov" %>
     </div>
     <div id='content'>
       <%= render @view_module, @view_template, assigns %>

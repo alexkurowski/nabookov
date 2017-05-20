@@ -1,13 +1,13 @@
 <%= modal "edit_book" do %>
   <%= body do %>
-    <%= title gettext "Book Details" %>
+    <%= title t "Book Details" %>
 
-    <label><%= gettext "Title" %></label>
+    <label><%= t "Title" %></label>
     <%= text_input :book, :title, class: "form-control", placeholder: "Book title", maxlength: 120, autofocus: true %>
 
     <br>
 
-    <label><%= gettext "Description" %></label>
+    <label><%= t "Description" %></label>
     <%= textarea :book, :description, class: "form-control", placeholder: "Short headline about your book", maxlength: 255 %>
 
     <br>
@@ -15,7 +15,7 @@
     <div class='form-check'>
       <label class='form-check-label'>
         <%= checkbox :book, :visible, class: "form-check-input" %>
-        <%= gettext "Published" %>
+        <%= t "Published" %>
       </label>
     </div>
 
@@ -26,7 +26,7 @@
 
   <%= footer do %>
     <div id='edit-book-submit' class='link'>
-      <%= gettext "Apply" %>
+      <%= t "Apply" %>
     </div>
   <% end %>
 <% end %>

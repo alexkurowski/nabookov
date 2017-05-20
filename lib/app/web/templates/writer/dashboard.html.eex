@@ -2,7 +2,7 @@
 <%= render App.Web.ModalView, "edit_book.html" %>
 
 <div class='my-books-header text-centered'>
-  <h2><%= gettext "My Books" %></h2>
+  <h2><%= t "My Books" %></h2>
 </div>
 
 <br>

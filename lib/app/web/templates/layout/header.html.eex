@@ -24,7 +24,7 @@
       <%= if signed_in?(@conn) do %>
         <%= unless @view_module == App.Web.WriterView do %>
           <%= link to: writer_path(@conn, :dashboard), id: "writer-mode", class: "link" do %>
-            <%= gettext "Write" %>
+            <%= t "Write" %>
           <% end %>
         <% end %>
 
@@ -40,12 +40,12 @@
               <span class='link'
                     data-toggle='modal'
                     data-target='#username'>
-                <%= gettext "Pen name" %>
+                <%= t "Pen name" %>
               </span>
             </div>
             <div class='dropdown-item text-right'>
               <span id='signout' class='link'>
-                <%= gettext "Sign out" %>
+                <%= t "Sign out" %>
               </span>
             </div>
           </div>
@@ -55,7 +55,7 @@
         <span id='header-signin' class='link'
               data-toggle='modal'
               data-target='#signin'>
-          <%= gettext "Sign up | Sign in" %>
+          <%= t "Sign up | Sign in" %>
         </span>
       <% end %>
     </div>

@@ -1,19 +1,19 @@
 <%= modal "new_book" do %>
   <%= body do %>
-    <%= title gettext "Create a new Book" %>
+    <%= title t "Create a new Book" %>
 
-    <label><%= gettext "Title" %></label>
+    <label><%= t "Title" %></label>
     <%= text_input :book, :title, class: "form-control", placeholder: "Book title", maxlength: 120, autofocus: true %>
 
     <br>
 
-    <label><%= gettext "Description" %> <span class='optional'><%= gettext "(optional)" %></span></label>
+    <label><%= t "Description" %> <span class='optional'><%= t "(optional)" %></span></label>
     <%= textarea :book, :description, class: "form-control", placeholder: "Short headline about your book", maxlength: 255 %>
   <% end %>
 
   <%= footer do %>
     <div id='new-book-submit' class='link'>
-      <%= gettext "Create Book" %>
+      <%= t "Create Book" %>
     </div>
   <% end %>
 <% end %>
