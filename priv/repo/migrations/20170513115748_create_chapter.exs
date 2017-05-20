@@ -6,7 +6,7 @@ defmodule App.Repo.Migrations.CreateChapter do
       add :title, :string
       add :text, :text
       add :draft, :text
-      add :order, :integer
+      add :order, :integer, default: 0
       add :visible, :boolean, default: false, null: false
       add :locked, :boolean, default: false, null: false
       add :book_id, references(:books, on_delete: :nothing)

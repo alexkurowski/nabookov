@@ -46,6 +46,12 @@ Allow users to override typeface settings on :cog: settings page.
 https://typen.co/
 
 
+### Analogs
+
+wattpad.com
+syosetu.com
+
+
 ### Naming
 
 > nabookov

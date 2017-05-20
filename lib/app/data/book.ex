@@ -10,6 +10,7 @@ defmodule App.Data.Book do
     field :price, :integer
     field :visible, :boolean, default: false
     field :deleted, :boolean, default: false
+    field :last_chapter_published_at, :naive_datetime
     belongs_to :user, App.Data.User
     has_many :chapters, App.Data.Chapter
     has_many :feedback, App.Data.Feedback

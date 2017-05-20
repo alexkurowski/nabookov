@@ -18,6 +18,18 @@
             <%= book.title %>
           </div>
         </a>
+
+        <%= if @edit do %>
+          <div class='info'>
+            <div class='chapters float-left'>
+              <%= book_chapters book %>
+            </div>
+
+            <div class='inserted float-right'>
+              <%= Timex.format(book.inserted_at, "%d/%m/%Y", :strftime) |> elem(1) %>
+            </div>
+          </div>
+        <% end %>
       </div>
     <% end %>
 
@@ -27,7 +39,7 @@
              data-toggle='modal'
              data-target='#new_book'>
           <div class='title'>
-            <span class='text-normal'>+</span> <%= gettext "New Book" %>
+            <span class='text-normal'>+</span> <%= t "New Book" %>
           </div>
         </div>
       </div>

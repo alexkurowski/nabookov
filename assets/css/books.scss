@@ -1,16 +1,19 @@
 @import "variables";
 
+$width:  150px;
+$height: 220px;
+
 .bookshelf {
   .book,
   .new-book {
     display: block;
     position: relative;
-    width: 150px;
-    height: 220px;
+    width: $width;
+    height: $height;
     background: white;
     border-radius: 3px;
     padding: 32px 16px;
-    margin: 16px auto;
+    margin: 16px auto 4px;
     cursor: pointer;
     overflow: hidden;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.075);
@@ -64,5 +67,11 @@
       border-color: $sub-text;
       box-shadow: none !important;
     }
+  }
+
+  .info {
+    font-size: 12px;
+    width: $width;
+    margin: 0 auto;
   }
 }

@@ -28,9 +28,10 @@ defmodule App.Books do
   """
   def current_user_books(conn) do
     user_id = current_user_id(conn)
-    Repo.all from b in Book,
+    Repo.all(from b in Book,
                where: b.user_id == ^user_id,
-               where: b.deleted == false
+               where: b.deleted == false)
+    |> Repo.preload(:chapters)
   end
 
   @doc """
