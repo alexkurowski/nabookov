@@ -1,1 +1,5 @@
-WRITE
+<div id='write' class='container'>
+  <%= text_input :chapter, :title, placeholder: t("Title") %>
+  <br>
+  <div id='draft'></div>
+</div>

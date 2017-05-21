@@ -55,6 +55,8 @@ exports.config = {
 
     copycat: {
       // Copy npm package files to /priv/static
+      js: ["node_modules/medium-editor/dist/js"],
+      css: ["node_modules/medium-editor/dist/css"],
       fonts: ["node_modules/font-awesome/fonts"]
     },
 

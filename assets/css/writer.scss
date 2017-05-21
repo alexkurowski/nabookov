@@ -1,0 +1,21 @@
+#write {
+  max-width: 700px;
+  min-height: 100vh;
+  padding: 20vh 0;
+
+  #chapter_title,
+  #draft {
+    width: 100%;
+    border: none;
+    outline: none;
+  }
+
+  #chapter_title {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+
+  #draft {
+    resize: none;
+  }
+}

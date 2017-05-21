@@ -63,7 +63,9 @@ defmodule App.Auth do
   Check if user name is taken
   """
   def name_taken?(name) do
-    not is_nil Repo.get_by(User, name: name)
+    Repo.one(from u in User,
+               select: count("*"),
+               where: fragment("? = lower(?)", ^String.downcase(name), u.name)) > 0
   end
 
   @doc """

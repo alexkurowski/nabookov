@@ -40,7 +40,7 @@ defmodule App.Books do
   def user_books(user_id) do
     Repo.all from b in Book,
                where: b.user_id == ^user_id,
-               where: b.visible == true,
+               where: b.public  == true,
                where: b.deleted == false
   end
 

@@ -16,7 +16,7 @@ defmodule App.Web.UserController do
     if App.Auth.name_taken?(params["name"]) do
       conn
       |> put_status(406)
-      |> text "no"
+      |> text("no")
     else
       conn
       |> current_user

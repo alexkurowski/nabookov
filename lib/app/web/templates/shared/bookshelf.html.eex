@@ -5,7 +5,7 @@
         <a href='<%= writer_path @conn, :write, book.slug %>'
            class='<%= book_class(book) %>'
            data-book='<%= book.slug %>'
-           data-visible='<%= book.visible %>'>
+           data-public='<%= book.public %>'>
           <%= if @edit do %>
             <div class='edit-details'
                  data-toggle='modal'
