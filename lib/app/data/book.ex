@@ -8,7 +8,7 @@ defmodule App.Data.Book do
     field :cover, :string
     field :slug, :string
     field :price, :integer
-    field :visible, :boolean, default: false
+    field :public, :boolean, default: true
     field :deleted, :boolean, default: false
     field :last_chapter_published_at, :naive_datetime
     belongs_to :user, App.Data.User
@@ -21,7 +21,7 @@ defmodule App.Data.Book do
   @doc false
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title, :description, :cover, :slug, :price, :visible, :deleted])
+    |> cast(params, [:title, :description, :cover, :slug, :price, :public, :deleted, :last_chapter_published_at])
     |> validate_required([])
     |> downcase_slug
     |> unique_constraint(:slug)

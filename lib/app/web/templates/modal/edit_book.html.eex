@@ -12,10 +12,11 @@
 
     <br>
 
+    <!-- TODO: make this a custom tumbler switch between 'public' and 'private' -->
     <div class='form-check'>
       <label class='form-check-label'>
         <%= checkbox :book, :visible, class: "form-check-input" %>
-        <%= t "Published" %>
+        <%= t "List this book on my profile page" %>
       </label>
     </div>
 

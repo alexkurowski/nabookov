@@ -60,6 +60,13 @@ defmodule App.Auth do
   end
 
   @doc """
+  Check if user name is taken
+  """
+  def name_taken?(name) do
+    not is_nil Repo.get_by(User, name: name)
+  end
+
+  @doc """
   Update user name
   """
   def update_name(user, name) do

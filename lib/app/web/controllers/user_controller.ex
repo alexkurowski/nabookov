@@ -7,14 +7,21 @@ defmodule App.Web.UserController do
   end
 
   def signout(conn, _params) do
-    conn = put_session(conn, :current_user_token, nil)
-    text conn, "ok"
+    conn
+    |> sign_out
+    |> text("ok")
   end
 
   def username(conn, params) do
-    conn
-    |> current_user
-    |> App.Auth.update_name(params["name"])
-    text conn, "ok"
+    if App.Auth.name_taken?(params["name"]) do
+      conn
+      |> put_status(406)
+      |> text "no"
+    else
+      conn
+      |> current_user
+      |> App.Auth.update_name(params["name"])
+      text conn, "ok"
+    end
   end
 end
