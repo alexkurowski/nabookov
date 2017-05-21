@@ -7,8 +7,7 @@
 
 <br>
 
-<%= render App.Web.SharedView, "bookshelf.html",
+<%= render "bookshelf.html",
              conn: @conn,
              user: @current_user,
-             books: @books,
-             edit: true %>
+             books: @books %>

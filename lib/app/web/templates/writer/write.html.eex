@@ -1,5 +1,22 @@
-<div id='write' class='container'>
-  <%= text_input :chapter, :title, placeholder: t("Title") %>
-  <br>
-  <div id='draft'></div>
+<div id='write'>
+  <div id='sidebar'>
+    <div class='write-options'>
+    </div>
+
+    <div class='chapter-list-header'>
+      <%= t "Chapters:" %>
+    </div>
+
+    <div class='chapter-list'>
+    </div>
+  </div>
+
+  <div id='editor'>
+    <div id='title'></div>
+    <div id='draft'></div>
+  </div>
+
+  <div id='sidebar-toggle'>
+    <%= fa_icon "bars lg" %>
+  </div>
 </div>

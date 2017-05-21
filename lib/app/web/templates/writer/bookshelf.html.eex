@@ -1,0 +1,42 @@
+<div class='bookshelf container-fluid'>
+  <div class='row'>
+    <%= for book <- @books do %>
+      <div class='col-md-3 col-sm-4'>
+        <a href='<%= writer_path @conn, :write, book.slug %>'
+           class='<%= book_class(book) %>'
+           data-book='<%= book.slug %>'
+           data-public='<%= book.public %>'>
+          <div class='edit-details'
+               data-toggle='modal'
+               data-target='#edit_book'>
+            <%= fa_icon "cog" %>
+          </div>
+
+          <div class='title'>
+            <%= book.title %>
+          </div>
+        </a>
+
+        <div class='info'>
+          <div class='chapters float-left'>
+            <%= book_chapters book %>
+          </div>
+
+          <div class='inserted float-right'>
+            <%= Timex.format(book.inserted_at, "%d/%m/%Y", :strftime) |> elem(1) %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class='col-md-3 col-sm-4'>
+      <div class='new-book text-centered'
+           data-toggle='modal'
+           data-target='#new_book'>
+        <div class='title'>
+          <span class='text-normal'>+</span> <%= t "New Book" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

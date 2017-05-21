@@ -2,7 +2,7 @@ defmodule App.Web.WriterController do
   use App.Web, :controller
 
   plug :require_sign_in
-  plug :put_layout, {App.Web.LayoutView, "write.html"} when action in [:write]
+  plug :put_layout, {App.Web.WriterView, "layout.html"} when action in [:write]
 
   @doc """
   Writer's dashboard where he can manage his books and prices
