@@ -1,8 +1,5 @@
 Global =
   initialize: ->
-    csrf = ->
-      $('meta[name="csrf-token"]').attr('content')
-
     $('#header-user').on 'click', ->
       $('#header-user .dropdown').toggleClass('invisible')
 

@@ -13,7 +13,9 @@
     <script src='<%= static_path(@conn, "/js/medium-editor.js" )%>'></script>
     <script src='<%= static_path(@conn, "/js/app.js") %>'></script>
     <script>
-      var writer = require("js/writer")
+      initializeOnly('modals');
+
+      const writer = require("js/writer")
       writer.loadBookData(<%= raw @book |> book_data %>)
       <%= for chapter <- @book.chapters do %>
         writer.loadChapterData(<%= raw chapter |> chapter_data %>)

@@ -29,6 +29,7 @@ defmodule App.Web.WriterView do
   def book_data(book) do
     """
     {
+      slug: "#{js book.slug}",
       title: "#{js book.title}",
       description: "#{js book.description}"
     }
@@ -41,12 +42,13 @@ defmodule App.Web.WriterView do
   def chapter_data(chapter) do
     """
     {
-      title:   "#{js chapter.title}",
-      text:    "#{js chapter.text}",
-      draft:   "#{js chapter.draft}",
-      order:    #{chapter.order},
-      visible:  #{chapter.visible},
-      locked:   #{chapter.locked}
+      "id":       #{chapter.id},
+      "title":   "#{js chapter.title}",
+      "text":    "#{js chapter.text}",
+      "draft":   "#{js chapter.draft}",
+      "order":    #{chapter.order},
+      "visible":  #{chapter.visible},
+      "locked":   #{chapter.locked}
     }
     """
   end

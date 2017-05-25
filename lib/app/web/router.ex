@@ -29,6 +29,8 @@ defmodule App.Web.Router do
     get "/write",       WriterController, :dashboard
     get "/write/:slug", WriterController, :write
     post "/write/new",  WriterController, :new_book
+    post "/write/chp",  WriterController, :new_chapter
+    post "/write/rch",  WriterController, :remove_chapter
 
     get "/:slug",     ReaderController, :find
   end

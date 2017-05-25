@@ -21,6 +21,26 @@ defmodule App.Web.WriterController do
   end
 
   @doc """
+  Add a new chapter for current user's given book
+  """
+  def new_chapter(conn, params) do
+    book = App.Books.current_user_book(conn, params["slug"])
+    response = App.Books.create_chapter(conn, book)
+               |> elem(1)
+               |> App.Web.WriterView.chapter_data
+    text conn, response
+  end
+
+  @doc """
+  Remove a chapter with a given 'order' from current user's book
+  """
+  def remove_chapter(conn, params) do
+    book = App.Books.current_user_book(conn, params["slug"])
+    App.Books.remove_chapter(conn, book, params["order"])
+    text conn, "ok"
+  end
+
+  @doc """
   Update current user's book's details
   """
   def edit_book_details(conn, params) do

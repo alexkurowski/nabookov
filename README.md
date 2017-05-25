@@ -44,7 +44,7 @@ Allow users to override typeface settings on :cog: settings page.
 ### Writing app
 
 https://typen.co/
-
+https://novlr.org/
 
 ### Analogs
 

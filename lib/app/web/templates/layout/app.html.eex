@@ -15,7 +15,7 @@
 
     <%= render "footer.html" %>
 
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
-    <script>require('js/app').App.initialize()</script>
+    <script src='<%= static_path(@conn, "/js/app.js") %>'></script>
+    <script>initializeAll()</script>
   </body>
 </html>

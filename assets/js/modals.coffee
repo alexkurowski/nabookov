@@ -1,8 +1,5 @@
 Modals =
   initialize: ->
-    csrf = ->
-      $('meta[name="csrf-token"]').attr('content')
-
     # TODO: disable submit buttons so there are no multiple requests
 
     $('#signin-submit').on 'click', ->
@@ -54,6 +51,11 @@ Modals =
           description: description
         }
       .done -> location.reload()
+
+    $('#remove-chapter-submit').on 'click', ->
+      if $('.chapter-list').children().length > 1
+        writer.removeChapter() if typeof writer is 'object'
+        $('#remove_chapter').modal('hide')
 
     $('.bookshelf .edit-details').on 'click', (e) ->
       e.preventDefault()

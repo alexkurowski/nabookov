@@ -7,7 +7,7 @@
 
   <%= footer do %>
     <div class='link' data-dismiss='modal'>
-      <%= t "Dismiss" %>
+      <%= t "Ok" %>
     </div>
   <% end %>
 <% end %>

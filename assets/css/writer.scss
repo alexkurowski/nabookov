@@ -3,34 +3,118 @@
 #sidebar {
   position: fixed;
   top: 0;
-  left: -$editor-sidebar-width;
+  left: -$writer-sidebar-width;
   right: 0;
   bottom: 0;
-  width: $editor-sidebar-width;
-  padding-top: 64px;
-  color: $editor-sidebar-color;
-  background: $editor-sidebar-background;
+  width: $writer-sidebar-width;
+  padding-top: 32px;
+  color: $main-text;
+  background: $writer-sidebar-background;
   overflow-x: hidden;
   transition: 0.2s;
+
+  .write-options {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: right;
+
+    #cancel,
+    #submit {
+      display: inline-block;
+      height: 40px;
+      padding: 8px 12px;
+    }
+  }
 
   .chapter-list-header,
   .set-chapter {
     padding: 12px 16px;
   }
 
+  .chapter-list {
+    position: absolute;
+    top: 80px;
+    bottom: 72px;
+    left: 0;
+    right: 0;
+    overflow-y: auto;
+  }
+
   .set-chapter {
     position: relative;
+    height: 48px;
     cursor: pointer;
     white-space: nowrap;
     overflow: hidden;
 
+    .title {
+      display: inline-block;
+      max-width: 250px;
+      overflow: hidden;
+    }
+
+    .remove {
+      position: absolute;
+      right: 4px;
+      width: 24px;
+      color: $pale-text;
+      opacity: 0;
+      transition: 0.2s;
+
+      i {
+        padding: 4px;
+      }
+
+      &:hover {
+        color: $sub-text;
+      }
+    }
+
     &:hover {
-      background: $editor-sidebar-highlight;
+      background: $writer-sidebar-highlight;
+
+      .visible,
+      .locked,
+      .remove {
+        opacity: 1;
+      }
     }
 
     &.current {
-      color: $editor-sidebar-background;
-      background: $editor-sidebar-color;
+      background: $writer-sidebar-highlight;
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 4px;
+        background: $link;
+      }
+    }
+  }
+
+  #new-chapter {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 16px 32px;
+
+    .new-chapter-btn {
+      background: $writer-background;
+      padding: 8px;
+      cursor: pointer;
+      border-radius: 2px;
+
+      &:hover {
+        background: $writer-sidebar-highlight;
+      }
     }
   }
 }
@@ -41,6 +125,7 @@
   right: 0;
   max-width: 700px;
   min-height: 100vh;
+  background: $writer-background;
   padding: 20vh 8px;
   margin: 0 auto;
   overflow-x: hidden;
@@ -83,7 +168,7 @@
 
 #write.show-sidebar {
   #sidebar { left: 0; }
-  #editor { left: $editor-sidebar-width; }
+  #editor { left: $writer-sidebar-width; }
 }
 
 #sidebar-toggle {

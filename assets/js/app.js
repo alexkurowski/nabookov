@@ -24,10 +24,20 @@ import Global from "js/global"
 import Modals from "js/modals"
 import Books  from "js/books"
 
-export var App = {
-  initialize: function () {
-    Global.initialize()
-    Modals.initialize()
-    Books.initialize()
+window.csrf = () => {
+  return $('meta[name="csrf-token"]').attr('content')
+}
+
+window.initializeAll = () => {
+  Global.initialize()
+  Modals.initialize()
+  Books.initialize()
+}
+
+window.initializeOnly = (filename) => {
+  switch (filename) {
+    case 'global': return Global.initialize();
+    case 'modals': return Modals.initialize();
+    case 'Books':  return Books.initialize();
   }
 }
