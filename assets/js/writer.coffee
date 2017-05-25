@@ -121,9 +121,9 @@ Writer =
       Writer.loadChapterData(JSON.parse(response))
       Writer.resetSidebar(true)
 
-  editChapter: (chapterOrder) ->
+  editChapter: (chapterOrder, ignoreChanges) ->
     return if Writer.currentChapter is +chapterOrder
-    Writer.storeChanges() if Writer.currentChapter
+    Writer.storeChanges() if Writer.currentChapter and not ignoreChanges
     Writer.currentChapter = +chapterOrder
     Writer.resetSidebar()
 
@@ -153,14 +153,13 @@ Writer =
             chapter.order = chapter.order - 1
 
         switchChapters = Writer.currentChapter == Writer.chapterToRemove
-        # TODO: fix localStorage as well
         if Writer.currentChapter > Writer.chapterToRemove
           Writer.currentChapter -= 1
         else if Writer.currentChapter == Writer.chapterToRemove
           if Writer.book.chapters.length >= Writer.currentChapter
-            Writer.editChapter(Writer.currentChapter)
+            Writer.editChapter(Writer.currentChapter, true)
           else
-            Writer.editChapter(Writer.currentChapter - 1)
+            Writer.editChapter(Writer.currentChapter - 1, true)
         Writer.resetSidebar(true)
 
 module.exports = Writer
