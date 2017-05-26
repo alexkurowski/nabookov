@@ -56,12 +56,15 @@ Writer =
       list.empty()
       $.each Writer.book.chapters, (i, chapter) ->
         defaultChapter = "Chapter #{chapter.order}"
-        title = Writer.restoreChanges(chapter.order).title
+        storedTitle    = Writer.restoreChanges(chapter.order).title
+        title  = "<span class='title'>#{storedTitle or defaultChapter}</span>"
+        remove = "<span class='remove'
+                        data-toggle='modal'
+                        data-target='#remove_chapter'><i class='fa fa-trash'></i></span>"
+
         list.prepend "<div class='set-chapter' data-chapter='#{chapter.order}'>
-                       <span class='title'>#{title or defaultChapter}</span>
-                       <span class='remove'
-                             data-toggle='modal'
-                             data-target='#remove_chapter'><i class='fa fa-trash'></i></span>
+                       #{title}
+                       #{if Writer.book.chapters.length > 1 then remove else ''}
                      </div>"
     if Writer.currentChapter
       $('.set-chapter.current').removeClass('current')
@@ -122,7 +125,7 @@ Writer =
       Writer.resetSidebar(true)
 
   editChapter: (chapterOrder, ignoreChanges) ->
-    return if Writer.currentChapter is +chapterOrder
+    return if Writer.currentChapter is +chapterOrder and not ignoreChanges
     Writer.storeChanges() if Writer.currentChapter and not ignoreChanges
     Writer.currentChapter = +chapterOrder
     Writer.resetSidebar()
@@ -152,11 +155,18 @@ Writer =
           if chapter.order > Writer.chapterToRemove
             chapter.order = chapter.order - 1
 
+        console.log( 'Writer.book.chapters.length' )
+        console.log( Writer.book.chapters.length )
+        console.log( 'Writer.currentChapter' )
+        console.log( Writer.currentChapter )
+
         switchChapters = Writer.currentChapter == Writer.chapterToRemove
         if Writer.currentChapter > Writer.chapterToRemove
           Writer.currentChapter -= 1
         else if Writer.currentChapter == Writer.chapterToRemove
-          if Writer.book.chapters.length >= Writer.currentChapter
+          # TODO: check if this works (previously it was applying changes
+          #       from a removed chapter to a new one)
+          if Writer.currentChapter == 1
             Writer.editChapter(Writer.currentChapter, true)
           else
             Writer.editChapter(Writer.currentChapter - 1, true)
