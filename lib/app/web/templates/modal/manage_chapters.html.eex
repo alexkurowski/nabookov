@@ -1,0 +1,10 @@
+<%= modal "manage_chapters" do %>
+  <%= body do %>
+    <%= illustration "book" %>
+
+    <%= title t "Manage your chapters" %>
+
+    <div class='manage-chapter-list'>
+    </div>
+  <% end %>
+<% end %>

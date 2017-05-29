@@ -17,26 +17,45 @@ a {
   font-size: 12px;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .link {
   color: $link;
   text-decoration: none !important;
   cursor: pointer;
+  transition: color 0.2s;
 
   &:hover {
     color: $link-hover;
   }
 }
 
-.link-btn {
-  color: white;
-  background: $link;
+.link-btn,
+.gray-btn {
   padding: 8px;
   border-radius: 4px;
   text-decoration: none !important;
   cursor: pointer;
+  transition: background 0.2s;
+}
+
+.link-btn {
+  color: white;
+  background: $link;
 
   &:hover {
     background: $link-hover;
+  }
+}
+
+.gray-btn {
+  color: white;
+  background: $graylink;
+
+  &:hover {
+    background: $graylink-hover;
   }
 }
 

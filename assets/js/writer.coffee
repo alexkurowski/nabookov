@@ -37,15 +37,57 @@ Writer =
 
     $('.chapter-list').on 'click', '.set-chapter .remove', (e) ->
       e.stopPropagation()
-      Writer.chapterToRemove = $(@).closest('.set-chapter').data('chapter')
+      Writer.chapterToRemove = $(@).closest('.set-chapter').data('order')
       $('#remove_chapter').modal()
 
     $('.chapter-list').on 'click', '.set-chapter', ->
-      Writer.editChapter $(@).data('chapter')
+      Writer.editChapter $(@).data('order')
 
     $('#new-chapter').on 'click', Writer.newChapter
 
+    $(document).on 'scroll', -> switchClass('#fixed-actions', 'shown', scrollY is 0)
+    switchClass('#fixed-actions', 'shown', scrollY is 0)
+
     setInterval(Writer.storeChanges, 2000)
+
+    $('#manage-chapters').on 'click', (e) ->
+      e.stopPropagation()
+      Writer.resetManageList()
+      $('#manage_chapters').modal()
+
+  resetManageList: ->
+    hidden = (condition) -> if condition then '' else 'hidden'
+
+    allChapters = $('.set-chapter').length
+    list = $('.manage-chapter-list')
+
+    list.empty()
+    $('.set-chapter').each (i, el) ->
+      chapter = Writer.getChapter $(el).data('order')
+      count = allChapters - i
+      text = localStorage.getItem("#{Writer.book.slug}#{chapter.id} > draft") or chapter.text
+      words = text.replace(/<.*?>/g, ' ')
+                  .trim()
+                  .split(' ')
+                  .filter((str) -> !!str)
+                  .length
+
+      body = """
+             <div class='chapter' data-chapter='#{chapter.id}' data-order='#{chapter.order}'>
+               <div class='top'>
+                 <span class='count float-left'>#{count}: </span>
+                 <span class='title'>#{chapter.title}</span>
+                 <span class='words float-right'>#{words} word#{plural words}</span>
+               </div>
+               <span class='visible true  #{hidden chapter.visible}'>Published</span>
+               <span class='visible false #{hidden not chapter.visible}'>Private</span>
+               <span class='locked  true  #{hidden chapter.locked}'>Paid only</span>
+               <span class='locked  false #{hidden not chapter.locked}'>Free</span>
+               <span class='update'>Submit changes</span>
+             </div>
+             """
+      list.prepend body
+
 
   resetSidebar: (repopulate) ->
     Writer.book.chapters.sort (a, b) -> a.order - b.order
@@ -58,27 +100,28 @@ Writer =
         storedTitle  = Writer.restoreChanges(chapter.order).title
         title = "<span class='title'>#{storedTitle or defaultTitle}</span>"
 
-        icon   = "<span class='icon invisible'><i class='fa fa-pencil'></i></span>"
-        remove = "<span class='remove'
-                        data-toggle='modal'
-                        data-target='#remove_chapter'><i class='fa fa-trash'></i></span>"
+        icon   = "<span class='icon edited invisible'><i class='fa fa-pencil'></i></span>"
+        remove = "<span class='remove'><i class='fa fa-trash'></i></span>"
 
-        list.prepend "<div class='set-chapter' data-chapter='#{chapter.order}'>
-                       #{icon}
-                       #{title}
-                       #{if Writer.book.chapters.length > 1 then remove else ''}
-                     </div>"
+        body = """
+               <div class='set-chapter' data-order='#{chapter.order}'>
+                 #{icon}
+                 #{title}
+                 #{if Writer.book.chapters.length > 1 then remove else ''}
+               </div>
+               """
+        list.prepend body
 
       Writer.resetSidebarIcons()
     if Writer.currentChapter
       $('.set-chapter.current').removeClass('current')
-      $(".set-chapter[data-chapter='#{Writer.currentChapter}']").addClass('current')
+      $(".set-chapter[data-order='#{Writer.currentChapter}']").addClass('current')
 
   resetSidebarIcons: ->
     $.each Writer.book.chapters, (i, chapter) ->
       if localStorage.getItem("#{Writer.book.slug}#{chapter.id} > title") isnt chapter.title or
          localStorage.getItem("#{Writer.book.slug}#{chapter.id} > draft") isnt chapter.text
-        $(".set-chapter[data-chapter='#{chapter.order}'] .icon").removeClass('invisible')
+        $(".set-chapter[data-order='#{chapter.order}'] .icon").removeClass('invisible')
 
 
   storeChanges: ->
@@ -169,11 +212,6 @@ Writer =
         for chapter in Writer.book.chapters
           if chapter.order > Writer.chapterToRemove
             chapter.order = chapter.order - 1
-
-        console.log( 'Writer.book.chapters.length' )
-        console.log( Writer.book.chapters.length )
-        console.log( 'Writer.currentChapter' )
-        console.log( Writer.currentChapter )
 
         switchChapters = Writer.currentChapter == Writer.chapterToRemove
         if Writer.currentChapter > Writer.chapterToRemove

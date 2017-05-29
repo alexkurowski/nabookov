@@ -6,6 +6,20 @@
   }
 }
 
+#manage_chapters {
+  .chapter {
+    margin-bottom: 16px;
+
+    .top {
+      border-bottom: 1px solid $writer-sidebar-highlight;
+    }
+
+    .count {
+      margin-right: 8px;
+    }
+  }
+}
+
 
 .modal-content {
   border-radius: 4px;
@@ -28,6 +42,16 @@
   }
 }
 
+.modal-body .illustration {
+  text-align: center;
+  font-size: 2em;
+  margin-top: 12px;
+}
+
+.modal-body {
+  padding: 30px;
+}
+
 .modal-footer {
   padding: 0;
   text-align: center !important;
@@ -42,4 +66,3 @@
     }
   }
 }
-

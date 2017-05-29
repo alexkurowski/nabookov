@@ -1,21 +1,8 @@
+<%= render App.Web.ModalView, "manage_chapters.html" %>
 <%= render App.Web.ModalView, "remove_chapter.html" %>
 
 <div id='write'>
   <div id='sidebar'>
-    <div class='write-options'>
-      <div id='cancel'>
-        <%= t "Cancel" %>
-      </div>
-
-      <div id='submit'>
-        <%= t "Submit" %>
-      </div>
-    </div>
-
-    <div class='chapter-list-header text-centered'>
-      <%= t "Chapters" %>
-    </div>
-
     <div id='new-chapter'>
       <span class='icon'><%= fa_icon "plus" %></span>
       <span class='title'><%= t "New Chapter" %></span>
@@ -30,7 +17,13 @@
     <div id='draft'></div>
   </div>
 
-  <div id='sidebar-toggle'>
-    <%= fa_icon "bars lg" %>
+  <div id='fixed-actions'>
+    <div id='sidebar-toggle'>
+      <%= fa_icon "bars lg" %>
+    </div>
+
+    <div id='manage-chapters' class='float-right link-btn'>
+      <%= t "Publish" %>
+    </div>
   </div>
 </div>

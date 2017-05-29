@@ -13,6 +13,10 @@ defmodule App.Web.ModalView do
     """
   end
 
+  def illustration(icon) do
+    raw "<div class='illustration'><i class='fa fa-#{icon}'></i></div>"
+  end
+
   def title(content) do
     raw "<h4 class='modal-title'>#{content}</h4>"
   end

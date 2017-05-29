@@ -28,6 +28,16 @@ window.csrf = () => {
   return $('meta[name="csrf-token"]').attr('content')
 }
 
+window.switchClass = (el, kl, cond) => {
+  if (cond) $(el).addClass(kl);
+  else      $(el).removeClass(kl);
+}
+
+window.plural = (count) => {
+  if (count == 1) return '';
+  else            return 's';
+}
+
 window.initializeAll = () => {
   Global.initialize()
   Modals.initialize()

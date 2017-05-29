@@ -8,7 +8,12 @@ body {
   // background: $body-background;
   background: $background;
   color: $main-text;
+  font-family: PT Sans;
   min-height: 100vh;
+}
+
+h1, h2, h3, h4, .title {
+  font-family: Roboto;
 }
 
 header {

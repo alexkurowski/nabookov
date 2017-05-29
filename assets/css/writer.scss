@@ -7,7 +7,7 @@
   right: 0;
   bottom: 0;
   width: $writer-sidebar-width;
-  padding-top: 32px;
+  padding-top: 48px;
   color: $main-text;
   background: $writer-sidebar-background;
   font-size: 14px;
@@ -29,16 +29,40 @@
     }
   }
 
-  .chapter-list-header,
-  .set-chapter,
-  #new-chapter {
+  #new-chapter,
+  .set-chapter {
     position: relative;
-    padding: 14px 16px 14px 32px;
+    padding: 14px 32px;
     height: 48px;
+
+    .icon {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      font-size: 12px;
+      opacity: 0.4;
+      transition: opacity 0.2s;
+
+      &.edited {
+        font-size: 11px;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    .title {
+      display: inline-block;
+      max-width: 250px;
+      overflow: hidden;
+    }
   }
 
   #new-chapter {
+    border-bottom: 1px solid $writer-sidebar-highlight;
     cursor: pointer;
+    transition: background 0.2s;
 
     &:hover {
       background: $writer-sidebar-highlight;
@@ -47,37 +71,18 @@
 
   .chapter-list {
     position: absolute;
-    top: 128px;
+    top: 95px;
     bottom: 0;
     left: 0;
     right: 0;
     overflow-y: overlay;
   }
 
-
-  .icon {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    font-size: 11px;
-    opacity: 0.4;
-    transition: opacity 0.2s;
-
-    &:hover {
-      opacity: 0.8;
-    }
-  }
-
-  .title {
-    display: inline-block;
-    max-width: 250px;
-    overflow: hidden;
-  }
-
   .set-chapter {
     cursor: pointer;
     white-space: nowrap;
     overflow: hidden;
+    transition: background 0.2s;
 
     .remove {
       position: absolute;
@@ -185,19 +190,52 @@
 #write.show-sidebar {
   #sidebar { left: 0; }
   #editor { left: $writer-sidebar-width; }
+  #sidebar-toggle { opacity: 0.75; }
+  #manage-chapters { opacity: 1; }
 }
 
-#sidebar-toggle {
-  display: inline-block;
+#fixed-actions {
   position: fixed;
   top: 0;
   left: 0;
-  padding: 8px 12px;
-  color: #e0e0e0;
-  cursor: pointer;
-  transition: all 0.2s;
+
+  &.shown {
+    #sidebar-toggle { opacity: 0.5; }
+    #manage-chapters { opacity: 0.5; }
+  }
+
+  #sidebar-toggle {
+    display: inline-block;
+    position: absolute;
+    top: 8px;
+    left: 6px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: $pale-text;
+    cursor: pointer;
+    opacity: 0.25;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
 
   &:hover {
-    color: $pale-text;
+    #manage-chapters { opacity: 1; }
+  }
+
+  #manage-chapters {
+    position: absolute;
+    top: 8px;
+    left: 48px;
+    padding: 6px 10px;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.5s;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 }
