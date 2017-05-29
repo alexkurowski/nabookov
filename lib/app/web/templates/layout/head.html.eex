@@ -6,4 +6,6 @@
 <meta name="csrf-token" content="<%= get_csrf_token() %>">
 
 <title><%= t "nabookov" %></title>
-<link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+
+<link href="https://fonts.googleapis.com/css?family=Merriweather|PT+Mono|Roboto" rel="stylesheet">
+<link href="<%= static_path(@conn, "/css/app.css") %>" rel="stylesheet">

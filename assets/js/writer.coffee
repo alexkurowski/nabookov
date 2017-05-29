@@ -43,46 +43,59 @@ Writer =
     $('.chapter-list').on 'click', '.set-chapter', ->
       Writer.editChapter $(@).data('chapter')
 
-    $('#new-chapter > div').on 'click', Writer.newChapter
+    $('#new-chapter').on 'click', Writer.newChapter
 
     setInterval(Writer.storeChanges, 2000)
 
   resetSidebar: (repopulate) ->
     Writer.book.chapters.sort (a, b) -> a.order - b.order
 
-    console.log("resetSidebar, repopulate: " + repopulate)
     if repopulate
       list = $('.chapter-list')
       list.empty()
       $.each Writer.book.chapters, (i, chapter) ->
-        defaultChapter = "Chapter #{chapter.order}"
-        storedTitle    = Writer.restoreChanges(chapter.order).title
-        title  = "<span class='title'>#{storedTitle or defaultChapter}</span>"
+        defaultTitle = "Chapter #{chapter.order}"
+        storedTitle  = Writer.restoreChanges(chapter.order).title
+        title = "<span class='title'>#{storedTitle or defaultTitle}</span>"
+
+        icon   = "<span class='icon invisible'><i class='fa fa-pencil'></i></span>"
         remove = "<span class='remove'
                         data-toggle='modal'
                         data-target='#remove_chapter'><i class='fa fa-trash'></i></span>"
 
         list.prepend "<div class='set-chapter' data-chapter='#{chapter.order}'>
+                       #{icon}
                        #{title}
                        #{if Writer.book.chapters.length > 1 then remove else ''}
                      </div>"
+
+      Writer.resetSidebarIcons()
     if Writer.currentChapter
       $('.set-chapter.current').removeClass('current')
       $(".set-chapter[data-chapter='#{Writer.currentChapter}']").addClass('current')
 
+  resetSidebarIcons: ->
+    $.each Writer.book.chapters, (i, chapter) ->
+      if localStorage.getItem("#{Writer.book.slug}#{chapter.id} > title") isnt chapter.title or
+         localStorage.getItem("#{Writer.book.slug}#{chapter.id} > draft") isnt chapter.text
+        $(".set-chapter[data-chapter='#{chapter.order}'] .icon").removeClass('invisible')
+
 
   storeChanges: ->
     return unless window.localStorage
-    key = Writer.book.slug + Writer.getCurrentChapter().id
+    chapter = Writer.getCurrentChapter()
+    key = Writer.book.slug + chapter.id
 
     newTitle = Writer.title.getContent()
-    titleChanged = localStorage.getItem("#{key} > title") isnt newTitle
     newDraft = Writer.draft.getContent()
+    titleChanged = localStorage.getItem("#{key} > title") isnt newTitle
+    draftChanged = localStorage.getItem("#{key} > draft") isnt newDraft
 
     localStorage.setItem("#{key} > title", newTitle)
     localStorage.setItem("#{key} > draft", newDraft)
 
     Writer.resetSidebar(true) if titleChanged
+    Writer.resetSidebarIcons() if draftChanged
 
   restoreChanges: (order) ->
     chapter = if order
@@ -125,8 +138,10 @@ Writer =
       Writer.resetSidebar(true)
 
   editChapter: (chapterOrder, ignoreChanges) ->
-    return if Writer.currentChapter is +chapterOrder and not ignoreChanges
-    Writer.storeChanges() if Writer.currentChapter and not ignoreChanges
+    unless ignoreChanges
+      return if Writer.currentChapter is +chapterOrder
+      Writer.storeChanges() if Writer.currentChapter
+
     Writer.currentChapter = +chapterOrder
     Writer.resetSidebar()
 

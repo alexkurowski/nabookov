@@ -12,21 +12,20 @@
       </div>
     </div>
 
-    <div class='chapter-list-header'>
-      <%= t "Chapters:" %>
+    <div class='chapter-list-header text-centered'>
+      <%= t "Chapters" %>
+    </div>
+
+    <div id='new-chapter'>
+      <span class='icon'><%= fa_icon "plus" %></span>
+      <span class='title'><%= t "New Chapter" %></span>
     </div>
 
     <div class='chapter-list'>
     </div>
-
-    <div id='new-chapter'>
-      <div class='new-chapter-btn'>
-        <%= t "+ New Chapter" %>
-      </div>
-    </div>
   </div>
 
-  <div id='editor'>
+  <div id='editor' class='font-classic'>
     <div id='title'></div>
     <div id='draft'></div>
   </div>
