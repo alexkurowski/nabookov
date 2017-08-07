@@ -1,4 +1,4 @@
-<%= render App.Web.ModalView, "manage_chapters.html" %>
+<%= render App.Web.ModalView, "manage_chapter.html" %>
 <%= render App.Web.ModalView, "remove_chapter.html" %>
 
 <div id='write'>
@@ -17,13 +17,14 @@
     <div id='draft'></div>
   </div>
 
-  <div id='fixed-actions'>
+  <div id='fixed-actions' class='shown'>
     <div id='sidebar-toggle'>
       <%= fa_icon "bars lg" %>
     </div>
 
-    <div id='manage-chapters' class='float-right link-btn'>
-      <%= t "Publish" %>
+    <div id='manage-chapter' class='float-right link-btn'>
+      <%= t "Draft" %>
+      <%= fa_icon "angle-down" %>
     </div>
   </div>
 </div>

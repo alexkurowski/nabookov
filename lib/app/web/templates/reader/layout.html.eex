@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%= render App.Web.LayoutView, "head.html", conn: @conn %>
+
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/medium-editor.css") %>">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/themes/default.css") %>">
+  </head>
+
+  <body>
+    <%= render @view_module, @view_template, assigns %>
+
+    <script src='<%= static_path(@conn, "/js/medium-editor.js" )%>'></script>
+    <script src='<%= static_path(@conn, "/js/app.js") %>'></script>
+    <script>
+      initializeOnly('modals');
+
+      const reader = require("js/reader")
+      reader.loadBookData(<%= raw @book |> book_data %>)
+      <%= for chapter <- @chapters do %>
+        reader.loadChapterData(<%= raw chapter |> chapter_data %>)
+      <% end %>
+      reader.initialize()
+    </script>
+
+  </body>
+</html>

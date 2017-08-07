@@ -44,7 +44,23 @@ defmodule App.Web.WriterController do
   Update current user's book's details
   """
   def edit_book_details(conn, params) do
-    App.Books.update_book(conn, params)
+    App.Books.update_book_details(conn, params)
+    text conn, "ok"
+  end
+
+  @doc """
+  Update draft
+  """
+  def update_draft(conn, params) do
+    App.Books.update_draft(conn, params)
+    text conn, "ok"
+  end
+
+  @doc """
+  Update text
+  """
+  def update_text(conn, params) do
+    App.Books.publish(conn, params)
     text conn, "ok"
   end
 

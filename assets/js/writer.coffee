@@ -1,10 +1,25 @@
 Writer =
+  settings:
+    localSaveEvery: 2000 # ms
+    remoteSaveEvery: 10 # every nth local save
+
+  saveCounter: 0
+
+
   loadBookData: (book) ->
     Writer.book = book
     Writer.book.chapters = []
 
   loadChapterData: (chapter) ->
     Writer.book.chapters.push(chapter)
+
+    key = Writer.book.slug + chapter.id
+    if localStorage.getItem("#{key} > draft")
+      remote = chapter.sync_time or 0
+      local = +localStorage.getItem("#{key} > sync") || 0
+      if remote > local
+        localStorage.removeItem("#{key} > draft")
+        localStorage.removeItem("#{key} > sync")
 
 
   initialize: ->
@@ -35,58 +50,78 @@ Writer =
     $('#sidebar-toggle').on 'click', ->
       $('#write').toggleClass("show-sidebar")
 
+    $('#new-chapter').on 'click', Writer.newChapter
+
     $('.chapter-list').on 'click', '.set-chapter .remove', (e) ->
       e.stopPropagation()
       Writer.chapterToRemove = $(@).closest('.set-chapter').data('order')
       $('#remove_chapter').modal()
 
+    $('#manage_chapter').on 'click', '.draft-submit', (e) ->
+      Writer.storeChanges()
+      Writer.updateDraft()
+
+    $('#manage_chapter').on 'click', '.publish-submit', (e) ->
+      Writer.storeChanges()
+      Writer.updateText()
+
+    $('#manage_chapter').on 'click', '.remove', (e) ->
+      e.stopPropagation()
+      Writer.chapterToRemove = Writer.currentChapter
+      $('#manage_chapter').modal('hide')
+      $('#remove_chapter').modal()
+
+    $('#manage-chapter').on 'click', (e) ->
+      e.stopPropagation()
+      $('#write').removeClass("show-sidebar")
+      Writer.resetManageList()
+      $('#manage_chapter').modal()
+
     $('.chapter-list').on 'click', '.set-chapter', ->
       Writer.editChapter $(@).data('order')
 
-    $('#new-chapter').on 'click', Writer.newChapter
+    setTimeout (-> $('#fixed-actions').removeClass('shown')), 2000
 
-    $(document).on 'scroll', -> switchClass('#fixed-actions', 'shown', scrollY is 0)
-    switchClass('#fixed-actions', 'shown', scrollY is 0)
-
-    setInterval(Writer.storeChanges, 2000)
-
-    $('#manage-chapters').on 'click', (e) ->
-      e.stopPropagation()
-      Writer.resetManageList()
-      $('#manage_chapters').modal()
+    setInterval(Writer.storeChanges, Writer.settings.localSaveEvery)
 
   resetManageList: ->
     hidden = (condition) -> if condition then '' else 'hidden'
 
-    allChapters = $('.set-chapter').length
-    list = $('.manage-chapter-list')
+    modal = $('#manage_chapter')
+    el = $('.set-chapter.current')
+    chapter = Writer.getChapter $(el).data('order')
+    chapterCount = $('.set-chapter').length
 
-    list.empty()
-    $('.set-chapter').each (i, el) ->
-      chapter = Writer.getChapter $(el).data('order')
-      count = allChapters - i
-      text = localStorage.getItem("#{Writer.book.slug}#{chapter.id} > draft") or chapter.text
-      words = text.replace(/<.*?>/g, ' ')
-                  .trim()
-                  .split(' ')
-                  .filter((str) -> !!str)
-                  .length
+    order = $(el).data('order')
+    title = $(el).find('.title').text().trim()
+    text  = localStorage.getItem("#{Writer.book.slug}#{chapter.id} > draft") or chapter.draft
+    words = text.replace(/<.*?>/g, ' ')
+                .trim()
+                .split(' ')
+                .filter((str) -> !!str)
+                .length
 
-      body = """
-             <div class='chapter' data-chapter='#{chapter.id}' data-order='#{chapter.order}'>
-               <div class='top'>
-                 <span class='count float-left'>#{count}: </span>
-                 <span class='title'>#{chapter.title}</span>
-                 <span class='words float-right'>#{words} word#{plural words}</span>
-               </div>
-               <span class='visible true  #{hidden chapter.visible}'>Published</span>
-               <span class='visible false #{hidden not chapter.visible}'>Private</span>
-               <span class='locked  true  #{hidden chapter.locked}'>Paid only</span>
-               <span class='locked  false #{hidden not chapter.locked}'>Free</span>
-               <span class='update'>Submit changes</span>
+    modal.find('.modal-title').text("Chapter #{order}")
+    modal.find('.title').text("Title: '#{title}'")
+    modal.find('.word-count').text("#{words} word#{plural words}")
+
+    switchClass(modal.find('.remove-option'), 'hidden', chapterCount is 1)
+
+    body = """
+           <div class='chapter' data-chapter='#{chapter.id}' data-order='#{chapter.order}'>
+             <div class='top'>
+               <span class='words float-right'>#{words} word#{plural words}</span>
+               <span class='title'>#{title}</span>
              </div>
-             """
-      list.prepend body
+             <div class='publish link-btn'>Publish</div>
+             <div class='update link-btn'>Upload as draft</div>
+             <span class='visible true  #{hidden chapter.visible}'>Publish</span>
+             <span class='visible false #{hidden not chapter.visible}'>Private</span>
+             <span class='locked  true  #{hidden chapter.locked}'>Paid only</span>
+             <span class='locked  false #{hidden not chapter.locked}'>Free</span>
+             <div class='clearfix'></div>
+           </div>
+           """
 
 
   resetSidebar: (repopulate) ->
@@ -100,8 +135,14 @@ Writer =
         storedTitle  = Writer.restoreChanges(chapter.order).title
         title = "<span class='title'>#{storedTitle or defaultTitle}</span>"
 
-        icon   = "<span class='icon edited invisible'><i class='fa fa-pencil'></i></span>"
-        remove = "<span class='remove'><i class='fa fa-trash'></i></span>"
+        storedDraft = Writer.restoreChanges(chapter.order).draft
+        text = (storedDraft or chapter.draft or chapter.draft)
+        hasText = false
+        hasText = text.replace(/<.+?>/g, '').length > 0 if text
+
+        icon   = "<span class='icon edited invisible' title='Unsubmitted changes'><i class='fa fa-pencil'></i></span>"
+        remove = "<span class='remove' title='Delete chapter'><i class='fa fa-trash'></i></span>"
+        remove = '' if hasText
 
         body = """
                <div class='set-chapter' data-order='#{chapter.order}'>
@@ -120,22 +161,63 @@ Writer =
   resetSidebarIcons: ->
     $.each Writer.book.chapters, (i, chapter) ->
       if localStorage.getItem("#{Writer.book.slug}#{chapter.id} > title") isnt chapter.title or
-         localStorage.getItem("#{Writer.book.slug}#{chapter.id} > draft") isnt chapter.text
+         localStorage.getItem("#{Writer.book.slug}#{chapter.id} > draft") isnt chapter.draft
         $(".set-chapter[data-order='#{chapter.order}'] .icon").removeClass('invisible')
+
+
+  updateDraft: ->
+    $('#manage_chapter').modal('hide')
+
+    chapter = Writer.getCurrentChapter()
+    title = Writer.title.getContent()
+    draft = Writer.draft.getContent()
+
+    $.ajax
+      url: '/write/upd'
+      method: 'post'
+      data: {
+        _csrf_token: csrf()
+        book: Writer.book.slug
+        chapter: chapter.id
+        title: title
+        draft: draft
+        sync_time: +new Date
+      }
+
+
+  updateText: ->
+    $('#manage_chapter').modal('hide')
+
+    chapter = Writer.getCurrentChapter()
+    title = Writer.title.getContent()
+    draft = Writer.draft.getContent()
+
+    $.ajax
+      url: '/write/pbl'
+      method: 'post'
+      data: {
+        _csrf_token: csrf()
+        book: Writer.book.slug
+        chapter: chapter.id
+        title: title
+        draft: draft
+        sync_time: +new Date
+      }
 
 
   storeChanges: ->
     return unless window.localStorage
     chapter = Writer.getCurrentChapter()
-    key = Writer.book.slug + chapter.id
 
     newTitle = Writer.title.getContent()
     newDraft = Writer.draft.getContent()
     titleChanged = localStorage.getItem("#{key} > title") isnt newTitle
     draftChanged = localStorage.getItem("#{key} > draft") isnt newDraft
 
+    key = Writer.book.slug + chapter.id
     localStorage.setItem("#{key} > title", newTitle)
     localStorage.setItem("#{key} > draft", newDraft)
+    localStorage.setItem("#{key} > sync", +new Date)
 
     Writer.resetSidebar(true) if titleChanged
     Writer.resetSidebarIcons() if draftChanged
@@ -217,8 +299,6 @@ Writer =
         if Writer.currentChapter > Writer.chapterToRemove
           Writer.currentChapter -= 1
         else if Writer.currentChapter == Writer.chapterToRemove
-          # TODO: check if this works (previously it was applying changes
-          #       from a removed chapter to a new one)
           if Writer.currentChapter == 1
             Writer.editChapter(Writer.currentChapter, true)
           else

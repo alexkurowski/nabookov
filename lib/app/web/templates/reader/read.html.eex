@@ -1,0 +1,14 @@
+<div id='read'>
+  <div id='sidebar'>
+  </div>
+
+  <div id='editor' class='font-classic'>
+    <div id='title'></div>
+  </div>
+
+  <div id='fixed-actions' class='shown'>
+    <div id='sidebar-toggle'>
+      <%= fa_icon "bars lg" %>
+    </div>
+  </div>
+</div>

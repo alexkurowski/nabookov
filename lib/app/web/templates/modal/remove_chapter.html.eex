@@ -1,6 +1,6 @@
 <%= modal "remove_chapter" do %>
   <%= body do %>
-    <%= illustration "trast" %>
+    <%= illustration "trash" %>
 
     <%= title t "Delete Chapter?" %>
 

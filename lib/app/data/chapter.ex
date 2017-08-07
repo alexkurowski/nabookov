@@ -7,6 +7,7 @@ defmodule App.Data.Chapter do
     field :text, :string
     field :draft, :string
     field :order, :integer
+    field :sync_time, :string
     field :visible, :boolean, default: false, null: false
     field :locked, :boolean, default: false, null: false
     belongs_to :book, App.Data.Book
@@ -18,7 +19,7 @@ defmodule App.Data.Chapter do
   @doc false
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title, :text, :draft, :order, :visible, :locked])
+    |> cast(params, [:title, :text, :draft, :order, :sync_time, :visible, :locked])
     |> validate_required([])
   end
 end

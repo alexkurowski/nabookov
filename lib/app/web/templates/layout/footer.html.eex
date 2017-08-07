@@ -1,9 +1,9 @@
 <footer>
   <div id='footer'>
-    <div class='text-centered text-small text-muted'>
-      <%= t "nabookov.com" %>
+    <div class='text-right text-small text-muted'>
       ©
-      <%= DateTime.utc_now.year %>
+      <%= t "nabookov.com" %>,
+      <%= years %>
     </div>
   </div>
 </footer>

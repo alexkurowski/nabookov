@@ -1,0 +1,37 @@
+<%= modal "manage_chapter" do %>
+  <%= body do %>
+    <%= illustration "book" %>
+
+    <%= title t "Chapter" %>
+
+    <div class='chapter-info'>
+      <div class='title'></div>
+      <div class='word-count text-small float-right'></div>
+      <div class='clearfix'></div>
+    </div>
+
+    <div class='chapter-option'>
+      <span class='label'><%= t "Is this a free chapter?" %></span>
+      <span class='locked link-btn float-right'><%= t "Paid only?" %></span>
+      <div class='clearfix'></div>
+    </div>
+
+
+    <div class='chapter-option'>
+      <span class='label'><%= t "Sync your progress between devices" %></span>
+      <span class='draft-submit link-btn float-right'><%= t "Sync" %></span>
+      <div class='clearfix'></div>
+    </div>
+
+    <div class='chapter-option'>
+      <span class='label'><%= t "Ready to publish?" %></span>
+      <span class='publish-submit link-btn float-right'><%= t "Publish" %></span>
+      <div class='clearfix'></div>
+    </div>
+
+    <div class='chapter-option remove-option'>
+      <span class='label'><%= t "Delete this chapter" %></span>
+      <span class='remove red-btn float-right'><%= t "Delete" %></span>
+    </div>
+  <% end %>
+<% end %>

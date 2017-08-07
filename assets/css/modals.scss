@@ -6,16 +6,18 @@
   }
 }
 
-#manage_chapters {
-  .chapter {
-    margin-bottom: 16px;
+#manage_chapter {
+  .chapter-info {
+    margin-bottom: 12px;
+  }
 
-    .top {
-      border-bottom: 1px solid $writer-sidebar-highlight;
-    }
+  .chapter-option {
+    padding: 12px 0;
+    border-top: 1px solid $hr;
 
-    .count {
-      margin-right: 8px;
+    .label {
+      position: relative;
+      top: 8px;
     }
   }
 }

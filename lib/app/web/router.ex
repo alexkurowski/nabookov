@@ -31,8 +31,10 @@ defmodule App.Web.Router do
     post "/write/new",  WriterController, :new_book
     post "/write/chp",  WriterController, :new_chapter
     post "/write/rch",  WriterController, :remove_chapter
+    post "/write/upd",  WriterController, :update_draft
+    post "/write/pbl",  WriterController, :update_text
 
-    get "/:slug",     ReaderController, :find
+    get "/:slug", ReaderController, :read
   end
 
   # Other scopes may use custom stacks.

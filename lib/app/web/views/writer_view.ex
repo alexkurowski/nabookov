@@ -42,13 +42,13 @@ defmodule App.Web.WriterView do
   def chapter_data(chapter) do
     """
     {
-      "id":       #{chapter.id},
-      "title":   "#{js chapter.title}",
-      "text":    "#{js chapter.text}",
-      "draft":   "#{js chapter.draft}",
-      "order":    #{chapter.order},
-      "visible":  #{chapter.visible},
-      "locked":   #{chapter.locked}
+      "id":         #{chapter.id},
+      "title":     "#{js chapter.title}",
+      "draft":     "#{js chapter.draft}",
+      "order":      #{chapter.order},
+      "sync_time":  #{chapter.sync_time || 0},
+      "visible":    #{chapter.visible},
+      "locked":     #{chapter.locked}
     }
     """
   end

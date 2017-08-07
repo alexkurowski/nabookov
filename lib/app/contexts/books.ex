@@ -79,6 +79,24 @@ defmodule App.Books do
   end
 
   @doc """
+  Get a book by a slug
+  """
+  def find_book(slug) do
+    Repo.get_by(Book, slug: slug)
+  end
+
+  @doc """
+  Get all readable chapters of a book
+  """
+  def read_chapters(book) do
+    Repo.all from c in Chapter,
+               where: c.book_id == ^book.id,
+               where: c.visible == true,
+               where: c.locked == false
+  end
+
+
+  @doc """
   Get a book data with its chapters
   """
   def user_book(user_id, slug) do
@@ -96,11 +114,46 @@ defmodule App.Books do
   end
 
   @doc """
-  TODO: Update book details
+  Update book details
   """
-  def update_book(conn, %{"book" => slug, "title" => title, "description" => description}) do
+  def update_book_details(conn, %{"book" => slug, "title" => title, "description" => description}) do
+    user_id = current_user_id(conn)
+
+    user_book_by_slug(user_id, slug)
+    |> Book.changeset(%{title: title, description: description})
+    |> Repo.update
+  end
+
+  @doc """
+  Update chapter draft
+  """
+  def update_draft(conn, %{"book" => slug, "chapter" => chapter_id, "title" => title, "draft" => draft, "sync_time" => sync_time}) do
     user_id = current_user_id(conn)
     book = user_book_by_slug(user_id, slug)
+
+    book_chapter(book.id, chapter_id)
+    |> Chapter.changeset(%{title: title, draft: draft, sync_time: sync_time})
+    |> Repo.update
+  end
+
+  @doc """
+  Update chapter text and publish it
+  """
+  def publish(conn, %{"book" => slug, "chapter" => chapter_id, "title" => title, "draft" => draft, "sync_time" => sync_time}) do
+    user_id = current_user_id(conn)
+    book = user_book_by_slug(user_id, slug)
+    chapter = book_chapter(book.id, chapter_id)
+    new_publish = chapter.visible == false
+
+    chapter
+    |> Chapter.changeset(%{title: title, draft: draft, text: draft, sync_time: sync_time, visible: true})
+    |> Repo.update
+
+    if new_publish do
+      book
+      |> Book.changeset(%{last_chapter_published_at: DateTime.utc_now})
+      |> Repo.update
+    end
   end
 
   defp current_user_id(conn) do
@@ -110,6 +163,11 @@ defmodule App.Books do
   defp user_book_by_slug(user_id, slug) do
     Book
     |> Repo.get_by(user_id: user_id, slug: String.downcase(slug))
+  end
+
+  defp book_chapter(book_id, chapter_id) do
+    Chapter
+    |> Repo.get_by(book_id: book_id, id: chapter_id)
   end
 
   defp next_chapter_order(book_id) do

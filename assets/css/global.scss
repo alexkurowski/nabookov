@@ -33,7 +33,8 @@ a {
 }
 
 .link-btn,
-.gray-btn {
+.gray-btn,
+.red-btn {
   padding: 8px;
   border-radius: 4px;
   text-decoration: none !important;
@@ -56,6 +57,15 @@ a {
 
   &:hover {
     background: $graylink-hover;
+  }
+}
+
+.red-btn {
+  color: white;
+  background: $redlink;
+
+  &:hover {
+    background: $redlink-hover;
   }
 }
 

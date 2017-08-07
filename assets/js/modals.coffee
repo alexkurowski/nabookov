@@ -10,7 +10,7 @@ Modals =
         url: '/signin'
         method: 'post'
         data: {
-          _csrf_token: csrf(),
+          _csrf_token: csrf()
           email: email
         }
       .done ->
@@ -24,7 +24,7 @@ Modals =
         url: '/username'
         method: 'post'
         data: {
-          _csrf_token: csrf(),
+          _csrf_token: csrf()
           name: name
         }
       .done ->
@@ -46,8 +46,8 @@ Modals =
         url: '/write/new'
         method: 'post'
         data: {
-          _csrf_token: csrf(),
-          title: title,
+          _csrf_token: csrf()
+          title: title
           description: description
         }
       .done -> location.reload()
