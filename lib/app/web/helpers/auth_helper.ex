@@ -17,7 +17,7 @@ defmodule App.Web.AuthHelper do
   Remove current user token from cookies
   """
   def sign_out(conn) do
-    put_resp_cookie(conn, "", max_age: 0)
+    put_resp_cookie(conn, current_user_token, "", max_age: 0)
   end
 
   @doc """
