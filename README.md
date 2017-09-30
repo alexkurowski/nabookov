@@ -14,25 +14,6 @@ from the similar platforms.
 * Root folder name is supposed to be `app`, but nabookov might work just fine.
 
 
-### Ideas
-
-Keep track of users and try to determine if they are a writer or a reader
-
-Govern covers of books manually to avoid bad pictures
-
-Check novel section of pixiv.net
-
-Get cool big icons to assign to books based on genres, sizes and stuff
-
-Writing machine icon
-
-Max-width: 710px ?
-
-Allow users to set a typeface for each novel they author.
-Allow users to override typeface settings on :cog: settings page.
-"You know best how you like to read your novels"
-
-
 ### Sitemap
 
 #### Index page
@@ -50,48 +31,3 @@ https://novlr.org/
 
 wattpad.com
 syosetu.com
-
-
-### Naming
-
-> nabookov
-> nBOOKv
-> nbkv
-
-Similar to "gitbook"
-"patreon" + "book"
-"constancy", "cohesion", "persistence", "flow"
-"Fiction"
-"Quill", "pen", "scribble"
-"Draft"
-drauthor
-ink
-
-naBOOKov
-
-DRAFT
-DRUFT
-TFARD
-drafer
-
-drftr
-
-Available:
-spcover.com -> Self-publishing + Cover
-selfpubjournal.com
-spublish.com
-spubl^.com
-spchapter.com
-spubooks.com
-chptr
-(bib)lioteka.com
-book shop
-boosh
-koobshop
-ourbookshop.com
-(something-something)books.com <- lots available
-type, typo
--ism, -ist, -ink, -ning
-koobfeed (book backwards ʞood|feed)
-
-

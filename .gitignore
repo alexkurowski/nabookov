@@ -41,3 +41,5 @@ erl_crash.dump
 # Vim files
 *.swp
 *.swo
+
+ideas.md
